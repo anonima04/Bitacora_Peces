@@ -1,0 +1,42 @@
+#featured{
+  background-color: black;
+}
+.featured-species-section {
+    padding: 40px 20px;
+    background-color: #b1cdeea0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(7, 7, 7, 0.1);
+    margin: 20px;
+  }
+  
+  .featured-species-section h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 1px 1px rgb(19, 241, 241);
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .species-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .species-item {
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    background-color: rgb(212, 228, 245);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .species-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
