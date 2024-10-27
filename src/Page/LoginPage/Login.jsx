@@ -10,36 +10,35 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
+
 const auth = getAuth(appFireBase);
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
+  const navigate = useNavigate(); // useNavigate debe estar dentro del componente
 
   const functAutenticacion = async (e) => {
-    e.preventDefault(); //Evitar recargue de pagina
+    e.preventDefault(); // Evitar recargue de página
     const correo = e.target.email.value;
     const contraseña = e.target.password.value;
     alert("Correo: " + correo + " | Contraseña: " + contraseña);
 
-    if (registrando) {
-      await createUserWithEmailAndPassword(auth, correo, contraseña);
-    } else {
-      try {
+    try {
+      if (registrando) {
+        await createUserWithEmailAndPassword(auth, correo, contraseña);
+        alert("Registro exitoso");
+        navigate("/registerUser"); // Redirige después del registro exitoso
+      } else {
         const user = await signInWithEmailAndPassword(auth, correo, contraseña);
-        alert(
-          "UID: " +
-            user.user.uid +
-            " Correo: " +
-            user.user.email +
-            " Contraseña: " +
-            user.user.password
-        );
-      } catch (error) {
-        if ((correo != "") & (contraseña != "")) {
-          alert("El correo o la contraseña son incorrectas");
-        } else {
-          alert("Completar campos vacios");
-        }
+        alert("Inicio de sesión exitoso");
+        navigate("/"); // Redirige después del inicio de sesión exitoso
+      }
+    } catch (error) {
+      if (correo !== "" && contraseña !== "") {
+        alert("El correo o la contraseña son incorrectos");
+      } else {
+        alert("Completar campos vacíos");
       }
     }
   };
@@ -52,25 +51,20 @@ const Login = () => {
 
           <form onSubmit={functAutenticacion} className="form-login">
             <h4 className="text">Correo</h4>
-
             <input type="email" id="email" placeholder="Ingresar Correo" />
-
             <h4 className="text">Contraseña</h4>
-
             <input
               type="password"
               id="password"
               placeholder="Ingresar Contraseña"
             />
-
             <button className="btn1 btn">
               {registrando ? "Registrate" : "Iniciar Sesion"}
             </button>
           </form>
 
-          <h4 className="text text2">
+          <h4 className="text2 text">
             {registrando ? "¿ Ya tienes cuenta ?" : " ¿ No tienes cuenta ?"}
-
             <button
               className="btn2 btn"
               onClick={() => {
@@ -80,8 +74,11 @@ const Login = () => {
               {registrando ? "Iniciar Sesion" : "Registrate"}
             </button>
           </h4>
-        </div>
 
+          <Link to="/recoverPass" id="link-RecContra">
+            {registrando ? "" : "¿ Has olvidado la contraseña ?"}
+          </Link>
+        </div>
         <div className="div-imgLogin">
           <img src={imgLogin} alt="Imagen Login" id="img-login" />
         </div>
