@@ -32,7 +32,7 @@ const Login = () => {
       } else {
         const user = await signInWithEmailAndPassword(auth, correo, contraseña);
         alert("Inicio de sesión exitoso");
-        navigate("/"); // Redirige después del inicio de sesión exitoso
+        navigate("/home"); // Redirige después del inicio de sesión exitoso
       }
     } catch (error) {
       if (correo !== "" && contraseña !== "") {

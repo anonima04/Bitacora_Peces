@@ -11,17 +11,6 @@ const auth = getAuth(appFireBase);
 const HomePage = ({ correoUsuario }) => {
   return (
     <div>
-      {/* <h2 className="text-center">
-        Bienvenido usuario: {correoUsuario}{" "}
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            signOut(auth); //Cerramos Sesion, redirige a Login
-          }}
-        >
-          Logout
-        </button>
-      </h2> */}
       <NavBar></NavBar>
       <AutoplayCarousels></AutoplayCarousels>
       <Footer></Footer>

@@ -1,0 +1,176 @@
+.bitacora-background {
+  background-image: url("https://images.pexels.com/photos/2739666/pexels-photo-2739666.jpeg?cs=srgb&dl=pexels-tomfisk-2739666.jpg&fm=jpg");
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+#textCrearBit {
+  color: white;
+  font-family: var(--font10);
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.bitacora-container {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.bitacora-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+#tituloBitacora,
+#descripcionBitacora,
+#nombreAutor,
+#fechaCreacion {
+  font-family: var(--font3);
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+#titulo,
+#descripcion,
+#autor,
+#fecha {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+  border: 0;
+  font-family: var(--font3);
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#titulo::placeholder,
+#descripcion::placeholder,
+#autor::placeholder,
+#fecha ::placeholder {
+  color: black;
+}
+
+#titulo:focus,
+#descripcion:focus,
+#autor:focus,
+#fecha:focus {
+  outline: none;
+  box-shadow: 0 0 20px 1px rgb(26, 255, 0);
+  transition:
+    border 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#submit-btn {
+  font-family: var(--font3);
+  width: 50%;
+  font-weight: bold;
+  padding: 1rem;
+  color: black;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgb(71, 123, 255);
+}
+
+/* Animacion */
+
+.div-ball {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.ball {
+  width: 300px;
+  height: 300px;
+  background-image: url("https://img.freepik.com/vector-premium/ilustracion-vectorial-concepto-actividad-humana-diaria_1317464-9839.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  animation: bounce 10s infinite ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0px);
+  }
+  12.5% {
+    transform: translateX(-100px);
+    box-shadow: 0 0 20px 2px white;
+  }
+  25% {
+    transform: translateX(0);
+  }
+  37.5% {
+    transform: translateX(100px);
+    box-shadow: 0 0 20px 2px white;
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  62.5% {
+    transform: translateY(100px);
+    box-shadow: 0 0 20px 2px lime;
+  }
+  75% {
+    transform: translateY(0);
+  }
+  87.5% {
+    transform: translateY(-100px);
+    box-shadow: 0 0 20px 2px lime;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ----------- */
+
+@media (max-width: 1024px) {
+  .bitacora-background {
+    flex-direction: column;
+  }
+  .bitacora-container {
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.518);
+    margin-bottom: 2cm;
+  }
+
+  .bitacora-form,
+  .div-ball {
+    width: 100%;
+  }
+
+  .div-ball {
+    margin: 2cm;
+  }
+}
