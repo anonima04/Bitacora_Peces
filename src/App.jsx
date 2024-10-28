@@ -10,10 +10,11 @@ import appFireBase from "./Firebase/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth(appFireBase);
 import Login from "./Page/LoginPage/Login";
-import Home from "./Page/HomePage/HomePage";
+import Home from "./Page/Home/Home";
 import { useState } from "react";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
+import FormBitacora from "./Components/FormBitacora/FormBitacora";
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -39,6 +40,8 @@ function App() {
         <Route path="/consejos" element={<TipsPage />} />
         <Route path="/sobre-nosotros" element={<AboutUsPage />} />
         <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/crearBitacora" element={<FormBitacora />} />
       </Routes>
     </Router>
   );

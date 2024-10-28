@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
 import "./RegisterUser.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
+  const navigate = useNavigate();
+  const [registro, setRegistro] = useState(false);
   const [roles] = useState(["Investigador", "Colaborador"]);
 
   return (
@@ -68,7 +71,18 @@ const RegisterUser = () => {
           </div>
 
           {/* Botón de enviar */}
-          <button type="submit" className="btnSubmit">
+          <button
+            type="submit"
+            className="btnSubmit"
+            onClick={(e) => {
+              {
+                setRegistro(!registro);
+                if (registro) {
+                  navigate("/home");
+                }
+              }
+            }}
+          >
             Continuar
           </button>
         </form>
