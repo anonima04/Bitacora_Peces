@@ -6,7 +6,7 @@ const Footer = () => {
     (
         <footer className="footer">
           <div className="footer-bottom">
-            &copy; 2024 Bitácora de Peces | Todos los derechos reservados.
+            &copy; 2024 Bitácora de Plantas | Todos los derechos reservados.
           </div>
         </footer>
     )

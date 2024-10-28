@@ -14,6 +14,8 @@ import Home from "./Page/HomePage/HomePage";
 import { useState } from "react";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
+import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
+import { Authentication } from "./Components/Authentication/Authentication";
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -27,20 +29,30 @@ function App() {
   });
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} /> {/* Pagina inicio */}
-        <Route path="/login" element={<Login />} />{" "}
-        {/* Pagina de Login - Register */}
-        <Route path="/recoverPass" element={<RecoverPassword />} />{" "}
-        {/* Pagina de recuperar contraseña */}
-        <Route path="/registerUser" element={<RegisterUser />} />{" "}
-        {/* Pagina de registro usuario */}
-        <Route path="/consejos" element={<TipsPage />} />
-        <Route path="/sobre-nosotros" element={<AboutUsPage />} />
-        <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
-      </Routes>
-    </Router>
+    <Authentication>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Pagina inicio */}
+          <Route path="/login" element={
+            <Login />} />{" "}
+          {/* Pagina de Login - Register */}
+          <Route path="/recoverPass" element={<RecoverPassword />} />{" "}
+          {/* Pagina de recuperar contraseña */}
+          <Route path="/registerUser" element={<RegisterUser />} />{" "}
+          {/* Pagina de registro usuario */}
+          <Route path="/consejos" element={<TipsPage />} />
+          <Route path="/sobre-nosotros" element={<AboutUsPage />} />
+          <Route 
+            path="/especies-destacadas"
+            element={
+              // <ProtectedRoute>
+            <FeaturedSpeciesPage />
+              // </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </Authentication>
   );
 }
 
