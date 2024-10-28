@@ -12,6 +12,8 @@ const auth = getAuth(appFireBase);
 import Login from "./Page/LoginPage/Login";
 import Home from "./Page/HomePage/HomePage";
 import { useState } from "react";
+import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
+import RegisterUser from "./Page/RegisterUser/RegisterUser";
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -27,7 +29,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} /> {/* Pagina inicio */}
+        <Route path="/login" element={<Login />} />{" "}
+        {/* Pagina de Login - Register */}
+        <Route path="/recoverPass" element={<RecoverPassword />} />{" "}
+        {/* Pagina de recuperar contraseña */}
+        <Route path="/registerUser" element={<RegisterUser />} />{" "}
+        {/* Pagina de registro usuario */}
         <Route path="/consejos" element={<TipsPage />} />
         <Route path="/sobre-nosotros" element={<AboutUsPage />} />
         <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
@@ -35,3 +43,5 @@ function App() {
     </Router>
   );
 }
+
+export default App;

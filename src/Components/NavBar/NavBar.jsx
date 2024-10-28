@@ -17,7 +17,7 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 
 const pages = ["Sobre nosotros", "Especies destacadas", "Consejos"];
-const settings = ["Inicio", "Registro"];
+const settings = ["Login", "Registro"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -92,7 +92,11 @@ function NavBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }} component={Link} to={`/${page.toLowerCase().replace(' ', '-')}`}>
+                  <Typography
+                    sx={{ textAlign: "center" }}
+                    component={Link}
+                    to={`/${page.toLowerCase().replace(" ", "-")}`}
+                  >
                     {page}
                   </Typography>
                 </MenuItem>
@@ -118,7 +122,6 @@ function NavBar() {
               fontWeight: 700,
               // letterSpacing: '.3rem',
               color: "inherit",
-              textDecoration: "none",
             }}
           >
             Bitacóra de peces
@@ -129,7 +132,7 @@ function NavBar() {
               <Button
                 key={page}
                 component={Link}
-                to={`/${page.toLowerCase().replace(' ', '-')}`}
+                to={`/${page.toLowerCase().replace(" ", "-")}`}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
@@ -164,7 +167,11 @@ function NavBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }} component={Link} to={`/${setting.toLowerCase()}`}>
+                  <Typography
+                    sx={{ textAlign: "center" }}
+                    component={Link}
+                    to={`/${setting.toLowerCase()}`}
+                  >
                     {setting}
                   </Typography>
                 </MenuItem>

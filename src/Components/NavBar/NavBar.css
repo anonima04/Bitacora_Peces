@@ -1,6 +1,9 @@
-#logo{
-    width: 50px;
-    margin-right: 16px;
-    border-radius: 100px;
+#logo {
+  width: 50px;
+  margin-right: 16px;
+  border-radius: 100px;
+}
 
+a {
+  text-decoration: none; /*Borrar linea a textos globalmente*/
 }
