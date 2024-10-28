@@ -12,6 +12,7 @@ const FeaturedSpeciesPage = () => {
         <div className="species-list">
           <div className="species-item">
             <img
+
               src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Lavanda.webp?alt=media&token=901be920-1993-44a5-a488-75da3ec3c6f7"
               alt="Lavanda"
             />
@@ -21,10 +22,12 @@ const FeaturedSpeciesPage = () => {
               de la región mediterránea, pero se ha cultivado en diversas partes
               del mundo debido a sus múltiples beneficios y su fragancia
               distintiva.
+
             </p>
           </div>
           <div className="species-item">
             <img
+
               src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/ceriman.webp?alt=media&token=95f4bd0c-3273-41a3-822f-a55f9452b7a15"
               alt="Ceriman"
             />
@@ -37,6 +40,7 @@ const FeaturedSpeciesPage = () => {
           </div>
           <div className="species-item">
             <img
+
               src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/lengua%20de%20suegra.jpg?alt=media&token=a2131d8e-ae64-4b04-93e1-98e4315727d3"
               alt="Lengua de suegra"
             />
@@ -46,6 +50,7 @@ const FeaturedSpeciesPage = () => {
               resistente, la
               lengua de suegra es conocida por su capacidad para purificar el
               aire, eliminando toxinas como el formaldehído y el benceno.
+            
             </p>
           </div>
         </div>
