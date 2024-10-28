@@ -7,6 +7,7 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <div>
+
       <NavBar />
       <div className="div-leaf">
         <div id="div-leaf-home">
