@@ -11,7 +11,7 @@ const auth = getAuth(appFireBase);
 const HomePage = ({ correoUsuario }) => {
   return (
     <div>
-      <h2 className="text-center">
+      {/* <h2 className="text-center">
         Bienvenido usuario: {correoUsuario}{" "}
         <button
           className="btn btn-primary"
@@ -21,10 +21,18 @@ const HomePage = ({ correoUsuario }) => {
         >
           Logout
         </button>
-        <NavBar></NavBar>
-        <AutoplayCarousels></AutoplayCarousels>
-        <Footer></Footer>
-      </h2>
+      </h2> */}
+      <NavBar></NavBar>
+      <AutoplayCarousels></AutoplayCarousels>
+      <Footer></Footer>
+      <button
+        onClick={() => {
+          signOut(auth);
+          window.location.href = "/sobre-nosotros";
+        }}
+      >
+        Cerrar Sesion
+      </button>
     </div>
   );
 };
