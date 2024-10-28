@@ -2,16 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  min-height: 100vh;
-  margin-bottom: -80px;
-  box-shadow: 2px 1px 1px rgba(88, 87, 87, 0.961);
+  background-color: whitesmoke;
+  margin: 20px;
+  border-radius: 20px;
+  padding: 20px;
+  
 }
 
 .carousel-wrapper {
-  margin-top: -80px;
-  width: 80%;
-  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+  padding: 20px;
 }
 
 .carousel-item {
@@ -19,7 +22,6 @@
 }
 
 .carousel-image {
-  box-shadow: -2px -2px 26px 6px blue inset, 5px 5px 10px 1px #000000 inset;
   border-radius: 20px;
   height: 100%;
   object-fit: cover;

@@ -12,39 +12,39 @@ const AutoplayCarousels = () => {
       >
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <a href="https://es.mongabay.com/2018/08/oceanos-plaga-pez-leon-en-caribe/">
+            <a href="https://www.clarin.com/internacional/plantas-flores-tipos-ideales-tener-casa_0_XOM1fHe2Kk.html">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/pez%20tigre.webp?alt=media&token=294b76d6-4841-4471-8b84-f82e1adce653"
+                src="https://www.clarin.com/2023/10/05/O2hopEADA_720x0__1.jpg"
                 className="d-block w-100 carousel-image"
-                alt="Pez leon en el Caribe Colombiano"
+                alt="Flores para tener en casa"
               />
             </a>
             <div className="carousel-caption d-none d-md-block">
-              <h5>Pez león en el Caribe Colombiano</h5>
+              <h5>Plantas con flores, ideales para tener en casa</h5>
             </div>
           </div>
           <div className="carousel-item">
-            <a href="https://colombia.inaturalist.org/taxa/132688-Amphiprion-ocellaris">
+            <a href="https://www.elmundo.es/yodona/lifestyle/2024/06/17/666bf6a2e85ece68648b4585.html">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/pez%20payaso.webp?alt=media&token=dd79b2c2-9771-45e2-9f57-67b2cb8f8cd3"
+                src="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2024/06/14/17183517565791.jpg"
                 className="d-block w-100 carousel-image"
-                alt="pez payaso"
+                alt="20 plantas aromáticas de interior y exterior"
               />
             </a>
             <div className="carousel-caption d-none d-md-block">
-              <h5>Todo sobre el pez payaso</h5>
+              <h5>20 plantas aromáticas de interior y exterior fáciles de cultivar para tu jardín y tus recetas</h5>
             </div>
           </div>
           <div className="carousel-item">
-            <a href="https://www.hola.com/mascotas/20220211204436/peces-mas-bonitos-llamativos-para-acuario-dn/">
+            <a href="https://blog.homedepot.com.mx/club-jardineria/tipos-de-tierra">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/peces.webp?alt=media&token=d4b7d602-cb7b-4a68-9b48-7c47bf0f70b8"
+                src="https://blog.homedepot.com.mx/wp-content/uploads/2023/07/flores-1-1024x683.jpeg"
                 className="d-block w-100 carousel-image"
                 alt="peces"
               />
             </a>
             <div className="carousel-caption d-none d-md-block">
-              <h5>Peces llamativos y bonitos para tu acuario</h5>
+              <h5>Conoce distintos tipos de tierra para el cuidado de las plantas</h5>
             </div>
           </div>
         </div>
