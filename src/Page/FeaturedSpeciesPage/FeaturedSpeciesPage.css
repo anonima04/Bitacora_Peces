@@ -12,7 +12,7 @@
   .featured-species-section h1 {
     text-align: center;
     margin-bottom: 20px;
-    text-shadow: 2px 1px 1px rgb(19, 241, 241);
+    text-shadow: 2px 1px 1px rgb(19, 241, 108);
     font-family: 'Times New Roman', Times, serif;
   }
   
@@ -35,8 +35,9 @@
   
   .species-item img {
     width: 100%;
-    height: auto;
+    height: 200px;
     border-radius: 10px;
     margin-bottom: 10px;
+    object-fit: cover;
   }
   

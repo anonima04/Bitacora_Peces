@@ -40,7 +40,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: '#00b815' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -58,7 +58,7 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            Bitacóra de peces
+            Bitacóra de plantas
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -87,13 +87,15 @@ function NavBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
+               
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography
-                    sx={{ textAlign: "center" }}
+                    sx={{ textAlign: "center",  backgroundColor: "green" }}
+                    
                     component={Link}
                     to={`/${page.toLowerCase().replace(" ", "-")}`}
                   >
@@ -105,8 +107,8 @@ function NavBar() {
           </Box>
           <img
             id="logo"
-            src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Logo%20bitagora%20pez.webp?alt=media&token=60dd3c2c-4c8f-4a50-a57c-2b38361bea44"
-            alt="Logo Bitácora Pez"
+            src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/logo%20planta.jpg?alt=media&token=ba508c29-46c9-4f96-9e35-208209aaff30"
+            alt="Logo Bitácora planta"
           />
 
           <Typography
@@ -115,6 +117,7 @@ function NavBar() {
             component={Link}
             to="/"
             sx={{
+              
               mr: 10,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
@@ -124,7 +127,7 @@ function NavBar() {
               color: "inherit",
             }}
           >
-            Bitacóra de peces
+            Bitacóra de plantas
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

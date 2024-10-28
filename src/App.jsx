@@ -14,7 +14,12 @@ import Home from "./Page/Home/Home";
 import { useState } from "react";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
+
+import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
+import { Authentication } from "./Components/Authentication/Authentication";
+
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
+
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -28,6 +33,32 @@ function App() {
   });
 
   return (
+
+    <Authentication>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Pagina inicio */}
+          <Route path="/login" element={
+            <Login />} />{" "}
+          {/* Pagina de Login - Register */}
+          <Route path="/recoverPass" element={<RecoverPassword />} />{" "}
+          {/* Pagina de recuperar contraseña */}
+          <Route path="/registerUser" element={<RegisterUser />} />{" "}
+          {/* Pagina de registro usuario */}
+          <Route path="/consejos" element={<TipsPage />} />
+          <Route path="/sobre-nosotros" element={<AboutUsPage />} />
+          <Route 
+            path="/especies-destacadas"
+            element={
+              // <ProtectedRoute>
+            <FeaturedSpeciesPage />
+              // </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </Authentication>
+
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} /> {/* Pagina inicio */}
@@ -44,6 +75,7 @@ function App() {
         <Route path="/crearBitacora" element={<FormBitacora />} />
       </Routes>
     </Router>
+
   );
 }
 
