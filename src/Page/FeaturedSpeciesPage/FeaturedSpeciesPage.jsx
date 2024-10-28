@@ -12,38 +12,45 @@ const FeaturedSpeciesPage = () => {
         <div className="species-list">
           <div className="species-item">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/pez%20dorado.avif?alt=media&token=431eb62a-57c2-46e3-af00-4cc7b0d6b47a"
-              alt="Pez Dorado"
+
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Lavanda.webp?alt=media&token=901be920-1993-44a5-a488-75da3ec3c6f7"
+              alt="Lavanda"
             />
-            <h2>Pez Dorado</h2>
+            <h2>Lavanda</h2>
             <p>
-              El Pez Dorado es uno de los peces de acuario más populares y
-              conocidos. Es fácil de cuidar y puede vivir en una amplia gama de
-              condiciones.
+              La lavanda es una planta perteneciente a la familia Lamiaceae. Esta planta es originaria
+              de la región mediterránea, pero se ha cultivado en diversas partes
+              del mundo debido a sus múltiples beneficios y su fragancia
+              distintiva.
+
             </p>
           </div>
           <div className="species-item">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/pez%20disco.jpg?alt=media&token=8643c8a9-9b7c-4afa-8054-546081be0675"
-              alt="Pez Disco"
+
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/ceriman.webp?alt=media&token=95f4bd0c-3273-41a3-822f-a55f9452b7a15"
+              alt="Ceriman"
             />
-            <h2>Pez Disco</h2>
+            <h2>Ceriman</h2>
             <p>
-              El Pez Disco es famoso por sus colores vibrantes y su forma
-              redonda. Requiere un cuidado específico y es mejor para acuaristas
-              experimentados.
+              Es una planta trepadora originaria de las selvas tropicales de
+              América Central, desde el sur de México hasta el norte de
+              Argentina
             </p>
           </div>
           <div className="species-item">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/pez%20betta.jpg?alt=media&token=ae9c7b7c-c3f0-4c74-b236-563ab76aebd6"
-              alt="Pez Betta"
+
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/lengua%20de%20suegra.jpg?alt=media&token=a2131d8e-ae64-4b04-93e1-98e4315727d3"
+              alt="Lengua de suegra"
             />
-            <h2>Pez Betta</h2>
+            <h2>Lengua de suegra</h2>
             <p>
-              El Pez Betta es conocido por su comportamiento agresivo y sus
-              aletas llamativas. Puede vivir solo en un acuario pequeño o con
-              compañeros compatibles.
+              La lengua de suegra, es una planta de interior popular y
+              resistente, la
+              lengua de suegra es conocida por su capacidad para purificar el
+              aire, eliminando toxinas como el formaldehído y el benceno.
+            
             </p>
           </div>
         </div>

@@ -2,8 +2,10 @@
   width: 50px;
   margin-right: 16px;
   border-radius: 100px;
+  transform: scale(1.2);
 }
 
 a {
   text-decoration: none; /*Borrar linea a textos globalmente*/
 }
+
