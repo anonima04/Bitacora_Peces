@@ -5,12 +5,17 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./AppBar_Home.css";
 import React from "react";
+import { getAuth, signOut } from "firebase/auth";
+import appFireBase from "../../Firebase/firebase";
+// import { useNavigate } from "react-router-dom";
 
 const pages = ["Crear", "Buscar"];
 const rutas = ["/crearBitacora", "/buscarBitacora"];
+const auth = getAuth(appFireBase);
 
 function AppBar_Home() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -18,6 +23,14 @@ function AppBar_Home() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    signOut(auth)
+      .then(() => {
+        alert("Cierre de sesión exitoso");
+        // navigate("/login"); // Redirige a la página de inicio de sesión
+      })
+      .catch((error) => {
+        alert("Error al cerrar sesión:", error);
+      });
   };
 
   return (

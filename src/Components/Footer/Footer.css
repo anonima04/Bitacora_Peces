@@ -1,12 +1,10 @@
 .footer {
-  background-color: #00b815;
+  /* background-color: #00b815; */
   color: white;
-  padding: 20px;
   text-align: center;
 }
 
 .footer-bottom {
- 
-  font-size: 0.9em;
- 
+  font-family: var(--font3);
+  font-size: 1em;
 }

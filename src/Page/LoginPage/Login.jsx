@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import imgLogin from "./img/img-login.png";
@@ -11,18 +10,19 @@ import {
 } from "firebase/auth";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useAuth } from "../../Components/Authentication/Authentication";
 const auth = getAuth(appFireBase);
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
   const navigate = useNavigate(); // useNavigate debe estar dentro del componente
+  // const { login } = useAuth();
 
   const functAutenticacion = async (e) => {
     e.preventDefault(); // Evitar recargue de página
     const correo = e.target.email.value;
     const contraseña = e.target.password.value;
-    alert("Correo: " + correo + " | Contraseña: " + contraseña);
+    // alert("Correo: " + correo + " | Contraseña: " + contraseña);
 
     try {
       if (registrando) {
@@ -32,6 +32,8 @@ const Login = () => {
       } else {
         const user = await signInWithEmailAndPassword(auth, correo, contraseña);
         alert("Inicio de sesión exitoso");
+        user.user.password = contraseña;
+        // login();
         navigate("/home"); // Redirige después del inicio de sesión exitoso
       }
     } catch (error) {
