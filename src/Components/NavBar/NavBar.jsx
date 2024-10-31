@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,51 +17,45 @@ import MenuItem from "@mui/material/MenuItem";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 
-const pages = ["Sobre nosotros", "Especies destacadas", "Consejos"];
-const settings = ["Login", "Registro"];
+const pages = [
+  "Sobre nosotros",
+  "Especies destacadas",
+  "Consejos",
+  "Ingresar o Registrarse",
+];
 
 function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#00b815' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              // letterSpacing: '.3rem',
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Bitacóra de plantas
-          </Typography>
+    <AppBar position="static" className="AppBar">
+      <Container maxWidth="xl" className="container-NavBar">
+        <img id="logo" src="/logoPag1.jpg" alt="Logo Bitácora planta" />
+        <a className="a-NavBar" href="/">
+          | BITAC - DS |
+        </a>
+        <div className="contenido">
+          {pages.map((page) => (
+            <a
+              className="a-NavBar"
+              key={page}
+              href={
+                page === "Ingresar o Registrarse"
+                  ? "/login"
+                  : `/${page.toLowerCase().replace(" ", "-")}`
+              }
+            >
+              {page}
+            </a>
+          ))}
+        </div>
+      </Container>
+    </AppBar>
+  );
+}
 
+export default NavBar;
+
+{
+  /* <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -87,15 +82,13 @@ function NavBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-               
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography
-                    sx={{ textAlign: "center",  backgroundColor: "green" }}
-                    
+                    sx={{ textAlign: "center" }}
                     component={Link}
                     to={`/${page.toLowerCase().replace(" ", "-")}`}
                   >
@@ -105,11 +98,6 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <img
-            id="logo"
-            src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/logo%20planta.jpg?alt=media&token=ba508c29-46c9-4f96-9e35-208209aaff30"
-            alt="Logo Bitácora planta"
-          />
 
           <Typography
             variant="h5"
@@ -117,18 +105,24 @@ function NavBar() {
             component={Link}
             to="/"
             sx={{
-              
               mr: 10,
               display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              // letterSpacing: '.3rem',
-              color: "inherit",
             }}
           >
-            Bitacóra de plantas
+            | BITAC - DS |
           </Typography>
+
+          {pages.map((page) => (
+            <MenuItem key={page}>
+              <Typography
+                sx={{ textAlign: "center" }}
+                component={Link}
+                to={`/${page.toLowerCase().replace(" ", "-")}`}
+              >
+                {page}
+              </Typography>
+            </MenuItem>
+          ))}
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -181,10 +175,24 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+        </Toolbar> */
 }
 
-export default NavBar;
+// const [anchorElNav, setAnchorElNav] = React.useState(null);
+// const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+// const handleOpenNavMenu = (event) => {
+//   setAnchorElNav(event.currentTarget);
+// };
+
+// const handleOpenUserMenu = (event) => {
+//   setAnchorElUser(event.currentTarget);
+// };
+
+// const handleCloseNavMenu = () => {
+//   setAnchorElNav(null);
+// };
+
+// const handleCloseUserMenu = () => {
+//   setAnchorElUser(null);
+// };
