@@ -1,3 +1,4 @@
+
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./Page/HomePage/HomePage";
@@ -11,6 +12,7 @@ import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
+
 
 function App() {
   return (
