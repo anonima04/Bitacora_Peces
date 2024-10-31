@@ -1,4 +1,4 @@
-/* Estilo para la página principal */
+
 .div-leaf {
     display: flex;
     flex-direction: column;
@@ -6,12 +6,15 @@
     padding: 2rem;
     background-image: url("https://img.freepik.com/vector-gratis/fondo-hojas-verdes-dibujadas-mano_23-2149133885.jpg");
     object-fit: cover;
+    /* background-size: cover; */
+    background-position: center;
     
   }
   
   #div-leaf-home {
     max-width: 800px;
     text-align: center;
+    justify-content: center;
     margin-bottom: 2rem;
     background-color: whitesmoke;
     border-radius: 20px;
@@ -31,17 +34,5 @@
     color: #010101;
     line-height: 1.6;
     margin-bottom: 2rem;
-  }
-  
-  .carousel-container {
-    width: 80%;
-    margin-bottom: 2rem;
-  }
-  
-  .navbar, .footer {
-    width: 100%;
-    background-color: #2e8b57;
-    color: #fff;
-    padding: 1rem;
   }
   

@@ -19,5 +19,5 @@ export function useAuth() {
 }
 
 Authentication.propTypes={
-    children: PropTypes.string
+    children: PropTypes.node
 }
