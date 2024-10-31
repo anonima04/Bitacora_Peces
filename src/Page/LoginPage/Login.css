@@ -116,6 +116,7 @@
 #link-RecContra {
   font-family: var(--font3);
   margin: 1rem auto;
+  text-decoration: none;
 }
 
 @media (max-width: 1024px) {

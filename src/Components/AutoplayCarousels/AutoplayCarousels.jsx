@@ -1,76 +1,49 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { useState, useEffect } from "react";
 import "./AutoplayCarousels.css";
 
+const images = [
+  "https://wallpapers.com/images/featured/plantas-omkgbojkkw14dmmv.jpg",
+  "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2024/06/14/17183517565791.jpg",
+  "https://images.pexels.com/photos/1379627/pexels-photo-1379627.jpeg",
+  "https://www.farbio.com/cdn/shop/articles/die-5-seltensten-pflanzen-der-welt-666343.jpg?v=1683570226",
+];
+
 const AutoplayCarousels = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      siguienteImagen();
+    }, 3000);
+
+    return () => clearInterval(interval); // Limpieza del intervalo
+  });
+
+  const siguienteImagen = () => {
+    setIndex((index + 1) % images.length);
+  };
+
+  const imagenAnterior = () => {
+    setIndex((index - 1 + images.length) % images.length);
+  };
+
   return (
-    <div className="carousel-container">
-      <div
-        id="carouselExampleAutoplaying"
-        className="carousel slide carousel-wrapper"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <a href="https://www.clarin.com/internacional/plantas-flores-tipos-ideales-tener-casa_0_XOM1fHe2Kk.html">
-              <img
-                src="https://www.clarin.com/2023/10/05/O2hopEADA_720x0__1.jpg"
-                className="d-block w-100 carousel-image"
-                alt="Flores para tener en casa"
-              />
-            </a>
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Plantas con flores, ideales para tener en casa</h5>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <a href="https://www.elmundo.es/yodona/lifestyle/2024/06/17/666bf6a2e85ece68648b4585.html">
-              <img
-                src="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2024/06/14/17183517565791.jpg"
-                className="d-block w-100 carousel-image"
-                alt="20 plantas aromáticas de interior y exterior"
-              />
-            </a>
-            <div className="carousel-caption d-none d-md-block">
-              <h5>20 plantas aromáticas de interior y exterior fáciles de cultivar para tu jardín y tus recetas</h5>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <a href="https://blog.homedepot.com.mx/club-jardineria/tipos-de-tierra">
-              <img
-                src="https://blog.homedepot.com.mx/wp-content/uploads/2023/07/flores-1-1024x683.jpeg"
-                className="d-block w-100 carousel-image"
-                alt="peces"
-              />
-            </a>
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Conoce distintos tipos de tierra para el cuidado de las plantas</h5>
-            </div>
-          </div>
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
+    <div className="carousel">
+      {images.map((src, i) => (
+        <img
+          key={index}
+          src={src}
+          alt={`Imagen ${index + 1}`}
+          className={(i === index ? "active" : "") + " img-plantas"}
+        />
+      ))}
+
+      <div className="carousel-controls">
+        <button className="carousel-arrow" onClick={imagenAnterior}>
+          &lt;
         </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
+        <button className="carousel-arrow" onClick={siguienteImagen}>
+          &gt;
         </button>
       </div>
     </div>
