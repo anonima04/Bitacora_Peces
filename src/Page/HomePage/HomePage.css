@@ -1,38 +1,64 @@
 
+
+.navbar-stikcy {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 .div-leaf {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    background-image: url("https://img.freepik.com/vector-gratis/fondo-hojas-verdes-dibujadas-mano_23-2149133885.jpg");
-    object-fit: cover;
-    /* background-size: cover; */
-    background-position: center;
-    
-  }
-  
-  #div-leaf-home {
-    max-width: 800px;
-    text-align: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    box-shadow: 0px 2px 18px 1px #000000;
-  }
-  
-  .homepage-title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #060606;
-    text-shadow: 2px 1px 1px yellow;
-    margin-bottom: 1rem;
-  }
-  
-  .homepage-subtitle {
-    font-size: 1.2rem;
-    color: #010101;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
-  
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#div-leaf-home {
+  max-width: 80%;
+  text-align: justify;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+
+.homepage-title {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-family: var(--font10);
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  text-shadow: 2px 1px 1px rgb(9, 255, 0);
+  margin-bottom: 2rem;
+}
+
+.homepage-subtitle {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  border-radius: 10px;
+  font-family: var(--font3);
+  line-height: 1.5cm;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: bold;
+}
+
+.carousel-container {
+  width: 80%;
+}
+
+.navbar,
+.footer {
+  width: 100%;
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 1rem;
+}
+
