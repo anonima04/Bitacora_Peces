@@ -53,7 +53,7 @@
 #nombreAutor,
 #fechaCreacion {
   font-family: var(--font3);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: white;
   font-weight: bold;
 }
@@ -67,6 +67,7 @@
   border-radius: 10px;
   border: 0;
   font-family: var(--font3);
+  font-size: 1.2rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -76,6 +77,7 @@
 #autor::placeholder,
 #fecha ::placeholder {
   color: black;
+  font-size: 1.2rem;
 }
 
 #titulo:focus,
@@ -87,6 +89,7 @@
   transition:
     border 0.3s ease,
     box-shadow 0.3s ease;
+    background-color: white;
 }
 
 #submit-btn {
