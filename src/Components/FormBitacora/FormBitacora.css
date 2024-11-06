@@ -53,7 +53,7 @@
 #nombreAutor,
 #fechaCreacion {
   font-family: var(--font3);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: white;
   font-weight: bold;
 }
@@ -68,6 +68,7 @@
   border: 0;
   font-family: var(--font3);
   font-weight: bold;
+  font-size: 1.2rem;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -76,6 +77,7 @@
 #autor::placeholder,
 #fecha ::placeholder {
   color: black;
+  font-size: 1rem;
 }
 
 #titulo:focus,
@@ -100,7 +102,6 @@
   background-color: rgb(71, 123, 255);
 }
 
-/* Animacion */
 
 .div-ball {
   display: flex;

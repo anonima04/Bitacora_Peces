@@ -9,17 +9,17 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url("https://img.freepik.com/vector-gratis/fondo-hojas-verdes-dibujadas-mano_23-2149133885.jpg");
-  object-fit: cover;
-  /* background-size: cover; */
-  background-position: center;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .tips-content {
   max-width: 800px;
   margin: auto;
   padding: 40px;
-  background: #ffffff;
+  background:  #ffffffbd;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -31,6 +31,7 @@
   color: #14532d;
   font-weight: bold;
   margin-bottom: 1.5rem;
+ 
 }
 
 .tip {

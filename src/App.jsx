@@ -12,14 +12,15 @@ import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
-
+import ProfilePage from "./Page/ProfilePage/ProfilePage";
+import File from './Components/File/File';
 
 function App() {
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/recoverPass" element={<RecoverPassword />} />
         <Route path="/consejos" element={<TipsPage />} />
@@ -43,6 +44,22 @@ function App() {
           element={
             <ProtectedRoute ruta={"/login"}>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/perfil/:userId"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <ProfilePage/> 
+            </ProtectedRoute>
+          }
+          ></Route>
+          <Route
+          path="/file/:idbitacora"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <File/> 
             </ProtectedRoute>
           }
         />
