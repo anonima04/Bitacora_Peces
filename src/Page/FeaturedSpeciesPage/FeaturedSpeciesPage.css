@@ -3,10 +3,10 @@
   /* background-color: #f4f9f9; */
   padding: 20px;
   color: #333;
-  background-image: url("https://img.freepik.com/vector-gratis/fondo-hojas-verdes-dibujadas-mano_23-2149133885.jpg");
-  object-fit: cover;
-  /* background-size: cover; */
-  background-position: center;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .featured-species-section {
@@ -21,8 +21,16 @@
   color: #2a7d2a;
   margin-bottom: 1.5rem;
   font-weight: 700;
-  background-color: whitesmoke;
+  background-color:  #ffffffbd;
   border-radius: 20px;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-family: var(--font10);
+  font-size: 2rem;
+  font-weight: bold;
+  color:#333;
+  text-shadow: 2px 1px 1px rgb(9, 255, 0);
+  margin-bottom: 2rem;
 }
 
 .species-list {
@@ -33,7 +41,7 @@
 }
 
 .species-item {
-  background-color: #fff;
+  background-color: #ffffffbd;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
