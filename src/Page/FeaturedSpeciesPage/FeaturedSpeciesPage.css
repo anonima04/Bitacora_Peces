@@ -1,43 +1,99 @@
-#featured{
-  background-color: black;
+#featured {
+  width: 100%;
 }
-.featured-species-section {
-    padding: 40px 20px;
-    background-color: #b1cdeea0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(7, 7, 7, 0.1);
-    margin: 20px;
-  }
-  
-  .featured-species-section h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 2px 1px 1px rgb(19, 241, 108);
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
+
+.featured-species-section h1 {
+  font-family: var(--font2);
+  margin: 2rem 0;
+  font-size: 3rem;
+  text-align: center;
+  color: #3c9267;
+  position: relative;
+}
+
+.featured-species-section h1::after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 3px;
+  background: black;
+  margin: 0.5rem auto;
+  border-radius: 2px;
+}
+
+.species-list {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.species-item {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.species-item:hover {
+  transform: translateY(-10px);
+}
+
+.species-item img {
+  filter: brightness(0.3);
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.species-item:hover img {
+  transform: scale(1.02);
+  filter: brightness(1);
+}
+
+.species-item h2 {
+  font-family: var(--font2);
+  font-size: 2rem;
+  margin-top: 1.5rem;
+}
+
+.species-item p {
+  font-family: var(--font7);
+  text-align: justify;
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 2;
+  padding: 1.5rem;
+}
+
+.species-item:hover h2 {
+  color: #3d8c49;
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 1024px) {
   .species-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .species-item {
-    max-width: 300px;
-    margin: 20px;
-    text-align: center;
-    background-color: rgb(212, 228, 245);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Times New Roman', Times, serif;
+}
+
+@media (max-width: 768px) {
+  .species-list {
+    grid-template-columns: 1fr;
   }
-  
-  .species-item img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    object-fit: cover;
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .species-list {
+    grid-template-columns: 1fr 1fr;
   }
-  
+
+  .planta3 {
+    grid-column: 1 / -1;
+  }
+}
