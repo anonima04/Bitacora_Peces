@@ -5,9 +5,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./AppBar_Home.css";
 import React from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { getAuth, signOut } from "firebase/auth";
-import appFireBase from "../../Firebase/firebase";
-// import { useNavigate } from "react-router-dom";
+import {db, appFireBase} from "../../Firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Crear", "Buscar"];
 const rutas = ["/crearBitacora", "/buscarBitacora"];
@@ -15,7 +16,7 @@ const auth = getAuth(appFireBase);
 
 function AppBar_Home() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const navigate = useNavigate(); // Inicializa useNavigate
+  const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,6 +33,54 @@ function AppBar_Home() {
         alert("Error al cerrar sesión:", error);
       });
   };
+  const handleProfile = async () => {
+    const userUid = auth.currentUser.uid; // UID del usuario autenticado
+    
+    try {
+      // Supón que el UID está asociado a la colección `PERSONA`
+      const q = query(collection(db, "PERSONA"), where("UID", "==", userUid));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        const personaId = querySnapshot.docs[0].id; // ID de la colección `PERSONA`
+        navigate(`/perfil/${personaId}`);
+      } else {
+        console.error("No se encontró el documento de persona");
+      }
+    } catch (error) {
+      console.error("Error al obtener ID de persona:", error);
+    }
+  };
+  const handleFile = async () => {
+    const userUid = auth.currentUser.uid;
+
+    try {
+        // Consulta para obtener el ID de la persona autenticada
+        const personaQuery = query(collection(db, "PERSONA"), where("UID", "==", userUid));
+        const personaSnapshot = await getDocs(personaQuery);
+
+        if (!personaSnapshot.empty) {
+            const personaId = personaSnapshot.docs[0].id;
+            
+            // Consulta para obtener la bitácora asociada al `personaId`
+            const bitacoraQuery = query(collection(db, "BITACORA"), where("ID_PERSONA", "==", personaId));
+            const bitacoraSnapshot = await getDocs(bitacoraQuery);
+
+            if (!bitacoraSnapshot.empty) {
+                const bitacoraId = bitacoraSnapshot.docs[0].id;
+                navigate(`/file/${bitacoraId}`); // Redirige a `FilePage` con el ID de la bitácora en la URL
+            } else {
+                console.error("No se encontró ninguna bitácora para la persona");
+            }
+        } else {
+            console.error("No se encontró el documento de persona");
+        }
+    } catch (error) {
+        console.error("Error al obtener bitácora:", error);
+    }
+};
+
+  
 
   return (
     <AppBar position="fixed">
@@ -71,8 +120,8 @@ function AppBar_Home() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Perfil</MenuItem>
-            <MenuItem onClick={handleClose}>Configuracion</MenuItem>
+            <MenuItem onClick={handleProfile}>Perfil</MenuItem>
+            <MenuItem onClick={handleFile}>Bitacora</MenuItem>
             <MenuItem onClick={handleClose}>Cerrar Sesion</MenuItem>
           </Menu>
         </div>
