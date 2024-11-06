@@ -26,29 +26,31 @@ const pages = [
 
 function NavBar() {
   return (
-    <AppBar position="static" className="AppBar">
-      <Container maxWidth="xl" className="container-NavBar">
-        <img id="logo" src="/logoPag1.jpg" alt="Logo Bitácora planta" />
-        <a className="a-NavBar" href="/">
-          | BITAC - DS |
-        </a>
-        <div className="contenido">
-          {pages.map((page) => (
-            <a
-              className="a-NavBar"
-              key={page}
-              href={
-                page === "Ingresar o Registrarse"
-                  ? "/login"
-                  : `/${page.toLowerCase().replace(" ", "-")}`
-              }
-            >
-              {page}
-            </a>
-          ))}
-        </div>
-      </Container>
-    </AppBar>
+    <>
+      <AppBar position="sticky" className="AppBar">
+        <Container maxWidth="xl" className="container-NavBar">
+          <img id="logo" src="/logoPag1.jpg" alt="Logo Bitácora planta" />
+          <a className="a-NavBar" href="/">
+            | BITAC - DS |
+          </a>
+          <div className="contenido">
+            {pages.map((page) => (
+              <a
+                className="a-NavBar"
+                key={page}
+                href={
+                  page === "Ingresar o Registrarse"
+                    ? "/login"
+                    : `/${page.toLowerCase().replace(" ", "-")}`
+                }
+              >
+                {page}
+              </a>
+            ))}
+          </div>
+        </Container>
+      </AppBar>
+    </>
   );
 }
 

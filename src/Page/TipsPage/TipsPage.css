@@ -1,35 +1,100 @@
 .tips-page {
-    font-family: Arial, sans-serif;
-    background-color: #0a0909;
-    color: #333;
+  width: 100%;
+  padding: 2rem;
+}
+
+#titulo-consejos {
+  font-family: var(--font1);
+  color: #36897f;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  line-height: 2;
+}
+
+.tip {
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 10px;
+  background-color: #daece5;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tip:hover {
+  transform: scale(1.02);
+  background-color: #5ccba1;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.8s ease;
+}
+
+.tip img {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.tip h2 {
+  font-family: var(--font1);
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.tip p {
+  font-size: 1rem;
+  line-height: 2;
+  color: #434945;
+}
+
+.tip h2::before {
+  content: "🌱 ";
+  font-size: 2rem;
+}
+
+/* COMPUTADORAS */
+@media (min-width: 1024px) {
+  .tips-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .tip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* MOVILES */
+@media (max-width: 768px) {
+  .tips-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 2rem;
   }
-  
-  .tips-content {
-    padding: 40px 20px;
-    max-width: 800px;
-    width: 100%;
-    background-color: #fcf9f9;
-    border-radius: 10px;
-    box-shadow: 2px 4px 8px rgba(110, 249, 92, 0.89);
-    margin: 20px 0;
-  }
-  
-  .tips-content h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
+
   .tip {
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    grid-template-columns: 1fr;
   }
-  
-  .tip h2 {
-    margin-bottom: 10px;
-    font-family: 'Times New Roman', Times, serif;
+
+  #titulo-consejos {
+    font-size: 2.5rem;
   }
-  
+}
+
+/* TABLETS */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .tips-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .tip {
+    grid-template-columns: 1fr;
+  }
+}

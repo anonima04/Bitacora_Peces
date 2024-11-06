@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recoverPass" element={<RecoverPassword />} />
-        <Route path="/consejos" element={<TipsPage />} />
+        <Route path="/consejos" element={<TipsPage nav={true} />} />
         <Route path="/sobre-nosotros" element={<AboutUsPage />} />
         <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
 
