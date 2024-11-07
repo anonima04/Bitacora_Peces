@@ -1,9 +1,7 @@
-@import url("../../Fonts.css");
-
 .container-login {
   width: 100%;
   min-height: 100vh;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,14 +35,14 @@
 
 .text {
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: var(--font3);
 }
 
 #email,
 #password {
   font-family: var(--font1);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: white;
   border-radius: 10px;
   padding: 1rem;
@@ -52,6 +50,7 @@
   background-color: rgb(20, 20, 20);
 }
 
+/* Cuando el cursor ingresa al input */
 #email:focus,
 #password:focus {
   outline: 1px solid cornflowerblue;
@@ -71,12 +70,12 @@
   height: 80%;
   object-fit: cover;
   border-radius: 20px;
-  padding: 2% 1%;
 }
 
 .btn {
   border-radius: 10px;
   border: 0;
+  font-size: 1rem;
   font-weight: bold;
   font-family: var(--font3);
 }
@@ -86,39 +85,40 @@
 }
 
 .btn1 {
-  padding: 12px 0;
+  padding: 12px;
   margin-top: 1rem;
   width: 100%;
   background-color: cornflowerblue;
 }
 
 .btn2 {
+  padding: 5px 1rem;
   background-color: rgb(248, 188, 58);
 }
 
 .text2 {
   display: flex;
+  font-size: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
   font-family: var(--font3);
   color: gray;
   text-align: center;
   width: 50%;
   margin-top: 2rem;
   /* background-color: red; */
-  gap: 1rem;
+  gap: 2rem;
 }
-
-/*  */
 
 #link-RecContra {
   font-family: var(--font3);
+  color: cornflowerblue;
   margin: 1rem auto;
   text-decoration: none;
 }
 
+/* MOVIL & TABLET */
 @media (max-width: 1024px) {
   .container-login {
     flex-direction: column;
@@ -140,6 +140,6 @@
 
   .div-imgLogin {
     width: 100%;
-    margin: 1rem;
+    margin: 2rem;
   }
 }

@@ -13,7 +13,7 @@ const HomePage = () => {
       <div className="div-leaf">
         <div id="div-leaf-home">
           <motion.h1 className="homepage-title">Bitácora de Plantas</motion.h1>
-          <motion.p className="homepage-subtitle">
+          <motion.p className="homepage-p">
             Sumérgete en el mundo de la botánica y explora cada etapa de
             crecimiento de tus plantas favoritas. En nuestro sitio, puedes
             registrar y crear bitácoras personalizadas para cada especie que

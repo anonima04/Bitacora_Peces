@@ -12,7 +12,7 @@ const FeaturedSpeciesPage = () => {
         <div className="species-list">
           <div className="species-item">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Lavanda.webp?alt=media&token=901be920-1993-44a5-a488-75da3ec3c6f7"
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Imgs_HomePage%2FPlanta_Lavanda.png?alt=media&token=dfd7b9be-ddbc-4d1d-8350-330bfebc5d26"
               alt="Lavanda"
             />
             <h2>Lavanda</h2>
@@ -25,7 +25,7 @@ const FeaturedSpeciesPage = () => {
           </div>
           <div className="species-item">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/ceriman.webp?alt=media&token=95f4bd0c-3273-41a3-822f-a55f9452b7a15"
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Imgs_HomePage%2FPlanta_Ceriman.webp?alt=media&token=f2cb9e97-6eca-4deb-9d79-fe84d5590fee"
               alt="Ceriman"
             />
             <h2>Ceriman</h2>
@@ -37,8 +37,8 @@ const FeaturedSpeciesPage = () => {
           </div>
           <div className="species-item planta3">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/lengua%20de%20suegra.jpg?alt=media&token=a2131d8e-ae64-4b04-93e1-98e4315727d3"
-              alt="Lengua de suegra"
+              src="https://firebasestorage.googleapis.com/v0/b/bitagorapeces.appspot.com/o/Imgs_HomePage%2FPlanta_LenguaSuegra.png?alt=media&token=aa944145-bf80-4349-aae5-84919555b746"
+              alt="LenguaSuegra"
             />
             <h2>Lengua de suegra</h2>
             <p>
