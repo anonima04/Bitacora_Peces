@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Components/Authentication/Authentication";
 const auth = getAuth(appFireBase);
 
 const Login = () => {
@@ -88,17 +87,5 @@ const Login = () => {
     </>
   );
 };
-
-// const images = [
-//   "https://img.freepik.com/foto-gratis/fondo-natural-lago-peces-colores_501050-118.jpg",
-//   "https://st2.depositphotos.com/45239516/44388/i/450/depositphotos_443882360-stock-photo-goldfish-water-pond-park.jpg",
-//   "https://static.wixstatic.com/media/0ba5c5_39741a10d9894a9aaba5387d6fa7fe75~mv2.jpg/v1/fill/w_602,h_339,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/morelia_foto1.jpg",
-//   "https://img.freepik.com/foto-gratis/lindo-pez-agua_23-2150699367.jpg",
-//   "https://img.freepik.com/fotos-premium/trucha-arroyo-pez-agua-exuberante-naturaleza-ia-generativa_853901-1863.jpg",
-//   "https://cdn.pixabay.com/video/2022/05/31/118756-715736002_tiny.jpg",
-//   "https://img.freepik.com/foto-gratis/lindo-pez-agua_23-2150699267.jpg?semt=ais_hybrid",
-//   "https://c4.wallpaperflare.com/wallpaper/682/597/199/animales-arrecife-coral-peces-wallpaper-preview.jpg",
-//   "https://portalefood.com.br/wp-content/uploads/2023/08/iStock-630068832-scaled.jpeg",
-// ];
 
 export default Login;
