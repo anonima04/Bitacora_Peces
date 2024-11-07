@@ -1,3 +1,4 @@
+
 #about {
   width: 100%;
 }
@@ -116,4 +117,98 @@
   .contact {
     grid-column: 1 / -1;
   }
+}
+
+#about {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  /* background-color: #f7f9fc; */
+  padding: 20px;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.about-us-section {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color:  #ffffffbd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.about-us-section h1 {
+  font-size: 2.5rem;
+  color: #2a7d2a;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: var(--font10);
+  font-size: 2rem;
+  font-weight: bold;
+  color:#333;
+  text-shadow: 2px 1px 1px rgb(9, 255, 0);
+}
+
+.about-us-section h2 {
+  font-size: 1.8rem;
+  color: #2a7d2a;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: var(--font10);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:#333;
+  text-shadow: 2px 1px 1px rgb(9, 255, 0);
+  margin-bottom: 2rem;
+}
+
+.about-us-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #131212;
+  margin-bottom: 1.5rem;
+}
+
+.about-us-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-us-section li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-left: 20px;
+  position: relative;
+  color: #444;
+}
+
+.about-us-section li::before {
+  content: '🌱';
+  position: absolute;
+  left: 0;
+}
+
+strong {
+  color: #2a7d2a;
+  font-family: var(--font10);
+  font-size: 1rem;
+  font-weight: bold;
+  color:#333;
+  text-shadow: 2px 1px 1px rgb(9, 255, 0);
+  margin-bottom: 2rem;
+  margin-left: 10px;
+}
+
+/* Contact Section */
+.about-us-section .contact-info {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: #e51b29;
+}
+
+.about-us-section .contact-info strong {
+  font-weight: bold;
 }

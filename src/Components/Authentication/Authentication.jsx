@@ -31,6 +31,8 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-Authentication.propTypes = {
-  children: PropTypes.node,
-};
+
+Authentication.propTypes={
+    children: PropTypes.node
+}
+
