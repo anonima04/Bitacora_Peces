@@ -1,8 +1,5 @@
-/* eslint-disable no-empty */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import "./FormBitacora.css";
-import { useEffect, useState } from "react";
 import { db } from "../../Firebase/firebase"; //Importamos para poder interactuar con la bases de datos de firestore
 import { collection, addDoc } from "firebase/firestore"; // Funciones para manejar Firestore
 
