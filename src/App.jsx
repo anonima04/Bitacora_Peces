@@ -11,14 +11,15 @@ import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
+
 import "./Fonts.css"; // Familia de fuentes GLOBAL
-//VERSION FUNCIONAL :)
+
 function App() {
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/recoverPass" element={<RecoverPassword />} />
         <Route path="/consejos" element={<TipsPage nav={true} />} />
@@ -42,6 +43,22 @@ function App() {
           element={
             <ProtectedRoute ruta={"/login"}>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/perfil/:userId"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <ProfilePage/> 
+            </ProtectedRoute>
+          }
+          ></Route>
+          <Route
+          path="/file/:idbitacora"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <File/> 
             </ProtectedRoute>
           }
         />

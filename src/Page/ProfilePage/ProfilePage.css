@@ -1,0 +1,80 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #212020;
+  margin: 0;
+}
+
+.profile-section,
+.bitagora-section,
+.muestra-section {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#body-div-profile{
+  padding-top: 80px;
+}
+
+.profile-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 2px solid #4CAF50;
+}
+
+.profile-section h2 {
+  font-size: 1.8em;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+.bitagora-section h2,
+.muestra-section h2 {
+  font-size: 1.6em;
+  color: #4CAF50;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Estilos de cartas */
+.bitacora-item,
+.muestra-item {
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bitacora-item:hover,
+.muestra-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.bitacora-item p,
+.muestra-item p {
+  font-size: 0.9em;
+  color: #2c2c2c;
+  margin: 4px 0;
+}
+Footer{
+  background-color: #212020;
+}
+
