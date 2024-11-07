@@ -12,7 +12,7 @@ import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
 import "./Fonts.css"; // Familia de fuentes GLOBAL
-
+//VERSION FUNCIONAL :)
 function App() {
   return (
     <Router>
