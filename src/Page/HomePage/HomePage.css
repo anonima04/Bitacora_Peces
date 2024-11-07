@@ -1,5 +1,3 @@
-
-
 .navbar-stikcy {
   position: sticky;
   top: 0;
@@ -31,8 +29,7 @@
 }
 
 .homepage-title {
-
-  background-color:  #ffffffbd;
+  background-color: #ffffffbd;
   border-radius: 10px;
 
   text-align: center;
@@ -64,4 +61,3 @@
   color: #fff;
   padding: 1rem;
 }
-

@@ -1,9 +1,8 @@
 #tips-page-margin {
   margin: 30px;
-  font-family: 'Georgia', serif;
+  font-family: "Georgia", serif;
   color: #2e2e2e;
 }
-
 
 .tips-page {
   width: 100%;
@@ -63,11 +62,10 @@
   max-width: 800px;
   margin: auto;
   padding: 40px;
-  background:  #ffffffbd;
+  background: #ffffffbd;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
-
 }
 
 .tips-content h1 {
@@ -75,7 +73,6 @@
   color: #14532d;
   font-weight: bold;
   margin-bottom: 1.5rem;
- 
 }
 
 .tip {
@@ -84,7 +81,9 @@
   padding: 20px;
   margin: 20px 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .tip:hover {
@@ -151,9 +150,6 @@
   .tip {
     grid-template-columns: 1fr;
   }
-}
-  color: #333;
-  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
