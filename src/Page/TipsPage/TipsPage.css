@@ -1,3 +1,10 @@
+#tips-page-margin {
+  margin: 30px;
+  font-family: 'Georgia', serif;
+  color: #2e2e2e;
+}
+
+
 .tips-page {
   width: 100%;
   padding: 2rem;
@@ -43,10 +50,57 @@
   font-size: 2rem;
   color: #000000;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.tips-content {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+  background:  #ffffffbd;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+}
+
+.tips-content h1 {
+  font-size: 2.5rem;
+  color: #14532d;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+ 
+}
+
+.tip {
+  background: linear-gradient(135deg, #f0f5f3, #e8f3ee);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tip h2 {
+  font-size: 1.5rem;
+  color: #117a3b;
+  margin-bottom: 0.5rem;
 }
 
 .tip p {
   font-size: 1rem;
+
   line-height: 2;
   color: #434945;
 }
@@ -96,5 +150,26 @@
 
   .tip {
     grid-template-columns: 1fr;
+  }
+}
+  color: #333;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .tips-content {
+    padding: 20px;
+  }
+
+  .tips-content h1 {
+    font-size: 2rem;
+  }
+
+  .tip h2 {
+    font-size: 1.3rem;
+  }
+
+  .tip p {
+    font-size: 0.9rem;
   }
 }
