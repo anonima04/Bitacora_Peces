@@ -1,79 +1,100 @@
-#tips-page-margin {
-  margin: 30px;
-  font-family: 'Georgia', serif;
-  color: #2e2e2e;
-}
-
-
 .tips-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-image: url("https://images.pexels.com/photos/808510/pexels-photo-808510.jpeg?cs=srgb&dl=pexels-muhammad-khairul-iddin-adnan-267454-808510.jpg&fm=jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
+  width: 100%;
+  padding: 2rem;
 }
 
-.tips-content {
-  max-width: 800px;
-  margin: auto;
-  padding: 40px;
-  background:  #ffffffbd;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+#titulo-consejos {
+  font-family: var(--font1);
+  color: #36897f;
+  font-size: 3rem;
   text-align: center;
-
-}
-
-.tips-content h1 {
-  font-size: 2.5rem;
-  color: #14532d;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
- 
+  margin-bottom: 3rem;
+  line-height: 2;
 }
 
 .tip {
-  background: linear-gradient(135deg, #f0f5f3, #e8f3ee);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 10px;
+  background-color: #daece5;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .tip:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+  background-color: #5ccba1;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.8s ease;
+}
+
+.tip img {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .tip h2 {
-  font-size: 1.5rem;
-  color: #117a3b;
-  margin-bottom: 0.5rem;
+  font-family: var(--font1);
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 10px;
 }
 
 .tip p {
   font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
+  line-height: 2;
+  color: #434945;
 }
 
+.tip h2::before {
+  content: "🌱 ";
+  font-size: 2rem;
+}
+
+/* COMPUTADORAS */
+@media (min-width: 1024px) {
+  .tips-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .tip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* MOVILES */
 @media (max-width: 768px) {
   .tips-content {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .tips-content h1 {
-    font-size: 2rem;
+  .tip {
+    grid-template-columns: 1fr;
   }
 
-  .tip h2 {
-    font-size: 1.3rem;
+  #titulo-consejos {
+    font-size: 2.5rem;
+  }
+}
+
+/* TABLETS */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .tips-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
-  .tip p {
-    font-size: 0.9rem;
+  .tip {
+    grid-template-columns: 1fr;
   }
 }

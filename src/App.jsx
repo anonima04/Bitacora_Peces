@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./Page/HomePage/HomePage";
@@ -12,10 +11,14 @@ import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/FormBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
+
+import "./Fonts.css"; // Familia de fuentes GLOBAL
+
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
 import File from './Components/File/File';
 import ManageAcountsPage from "./Page/ManageAcountsPage/ManageAcountsPage";
 import SearchBitacoraPage from './Page/SearchBitacoraPage/SearchBitacoraPage';
+
 
 function App() {
   return (
@@ -25,7 +28,7 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/recoverPass" element={<RecoverPassword />} />
-        <Route path="/consejos" element={<TipsPage />} />
+        <Route path="/consejos" element={<TipsPage nav={true} />} />
         <Route path="/sobre-nosotros" element={<AboutUsPage />} />
         <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
 
