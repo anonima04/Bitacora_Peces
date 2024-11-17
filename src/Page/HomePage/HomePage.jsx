@@ -26,7 +26,6 @@ const HomePage = () => {
           </motion.p>
         </div>
         {/* Contenedor único para el AutoplayCarousels */}
-
         <div className="carousel-container">
           <AutoplayCarousels />
         </div>
