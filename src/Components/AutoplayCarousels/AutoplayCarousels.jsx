@@ -17,7 +17,7 @@ const AutoplayCarousels = () => {
         newImages.unshift(newImages.pop()); //Elimino ultimo elemento y se agrega al inicio del arreglo
         return newImages; //Devuelvo el nuevo estado
       });
-    }, 3000); //Actualizacion cada 2 Segundos
+    }, 3000); //Actualizacion cada 3 Segundos
 
     return () => clearInterval(animation);
   }, []);
