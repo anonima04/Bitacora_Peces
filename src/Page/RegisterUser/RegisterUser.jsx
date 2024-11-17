@@ -1,20 +1,18 @@
 /* eslint-disable no-unused-vars */
 import "./RegisterUser.css";
-import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../Context/ContextRegistroUser";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../Firebase/firebase";
+import { db, auth } from "../../Firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
-  // const [registro, setRegistro] = useState(false);
-  const [roles] = useState(["Investigador", "Colaborador"]);
-  const { user } = useContext(UserContext);
+  const roles = ["Investigador", "Colaborador"];
+  const [user] = useAuthState(auth); //Obtener usuario actual en REACT
 
   async function crearPersona(persona) {
     try {
-      const documento = await addDoc(collection(db, "PERSONA"), persona);
+      await addDoc(collection(db, "PERSONA"), persona);
       alert("Persona agregada con exito: " + persona.CORREO);
       navigate("/home");
     } catch (e) {
