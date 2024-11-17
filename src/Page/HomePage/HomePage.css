@@ -1,3 +1,4 @@
+/* Estilo para la página principal */
 .navbar-stikcy {
   position: sticky;
   top: 0;
@@ -29,9 +30,6 @@
 }
 
 .homepage-title {
-  background-color: #ffffffbd;
-  border-radius: 10px;
-
   text-align: center;
   font-family: var(--font5);
   font-size: 3rem;
@@ -44,14 +42,12 @@
   margin-bottom: 1cm;
   font-family: var(--font1);
   line-height: 2cm;
-
   font-size: 1.2rem;
   color: black;
 }
 
 .carousel-container {
   width: 80%;
-  margin-bottom: 2rem;
 }
 
 .navbar,
