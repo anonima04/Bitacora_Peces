@@ -2,26 +2,22 @@
 import React, { useState } from "react";
 import imgLogin from "./img/img-login.png";
 import imgLogo from "./img/LogoPag.png";
-import appFireBase from "../../Firebase/firebase";
+import { auth } from "../../Firebase/firebase";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-const auth = getAuth(appFireBase);
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
   const navigate = useNavigate(); // useNavigate debe estar dentro del componente
-  // const { login } = useAuth();
 
   const functAutenticacion = async (e) => {
     e.preventDefault(); // Evitar recargue de página
     const correo = e.target.email.value;
     const contraseña = e.target.password.value;
-    // alert("Correo: " + correo + " | Contraseña: " + contraseña);
 
     try {
       if (registrando) {
@@ -29,10 +25,8 @@ const Login = () => {
         alert("Registro exitoso");
         navigate("/registerUser"); // Redirige después del registro exitoso
       } else {
-        const user = await signInWithEmailAndPassword(auth, correo, contraseña);
+        await signInWithEmailAndPassword(auth, correo, contraseña);
         alert("Inicio de sesión exitoso");
-        user.user.password = contraseña;
-        // login();
         navigate("/home"); // Redirige después del inicio de sesión exitoso
       }
     } catch (error) {

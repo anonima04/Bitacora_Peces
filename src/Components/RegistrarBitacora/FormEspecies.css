@@ -1,0 +1,58 @@
+.especies-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  text-align: center;
+  gap: 2rem;
+}
+
+.especies-form h2 {
+  font-family: var(--font3);
+  font-size: 1.8rem;
+  color: white;
+}
+
+.especies-form label {
+  font-family: var(--font3);
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+}
+
+.especies-form input, .divCamposMuestreo select {
+  color: black;
+  border-radius: 5px;
+  border: 0;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: var(--font3);
+  background-color: white;
+}
+
+.divCamposMuestreo {
+  padding: 1rem 0;
+  line-height: 2;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 3fr;
+  gap: 2rem;
+  text-align: left;
+}
+
+.especies-form input:focus,
+.especies-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px 5px lightgreen;
+  transition: box-shadow 0.3s ease;
+}
+
+#btnAgregarEspecie {
+  padding: 1rem;
+  width: 50%;
+  background-color: lightgreen;
+  font-family: var(--font3);
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 0;
+  border-radius: 5px;
+}
