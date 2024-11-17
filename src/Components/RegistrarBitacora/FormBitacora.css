@@ -1,5 +1,71 @@
-.bitacora-background {
+#contenedorPadreCrearBitacora {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  min-height: 92vh;
+  background-color: black;
+}
+
+#contenedorBitacora {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#contenedorBitacora h2,
+#contenedorBitacora label,
+#contenedorBitacora input {
+  color: white;
+  font-family: var(--font3);
+  font-weight: bold;
+}
+
+#contenedorBitacora h2 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+#contenedorBitacora label {
+  font-size: 1.3rem;
+}
+
+#contenedorBitacora input {
+  font-size: 1rem;
+  padding: 1rem;
+  border: 0;
+  border-radius: 5px;
+  background-color: rgba(142, 142, 142, 0.142);
+}
+
+#contenedorBitacora input:focus {
+  outline: 0;
+  color: lightgreen;
+  box-shadow: 0 0 10px lightgreen;
+}
+
+#divBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.btnFormBitacora {
+  padding: 15px 2rem;
+  font-family: var(--font10);
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: lightgreen;
+  border: 0;
+  border-radius: 5px;
+}
+
+/* .bitacora-background {
   background-image: url("https://images.pexels.com/photos/2739666/pexels-photo-2739666.jpeg?cs=srgb&dl=pexels-tomfisk-2739666.jpg&fm=jpg");
+background-color: rgba(20, 65, 30, 0.9);
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -90,7 +156,7 @@
   transition:
     border 0.3s ease,
     box-shadow 0.3s ease;
-    background-color: white;
+  background-color: white;
 }
 
 #submit-btn {
@@ -103,7 +169,6 @@
   border-radius: 10px;
   background-color: rgb(71, 123, 255);
 }
-
 
 .div-ball {
   display: flex;
@@ -156,7 +221,6 @@
   }
 }
 
-/* ----------- */
 
 @media (max-width: 1024px) {
   .bitacora-background {
@@ -176,4 +240,4 @@
   .div-ball {
     margin: 2cm;
   }
-}
+} */

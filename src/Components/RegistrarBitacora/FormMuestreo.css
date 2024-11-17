@@ -1,0 +1,118 @@
+.muestreo-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.muestreo-form h2,
+.muestreo-form label,
+.muestreo-form input {
+  color: white;
+  font-family: var(--font3);
+  font-weight: bold;
+}
+
+.muestreo-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.muestreo-form label {
+  font-size: 1.3rem;
+}
+
+.muestreo-form input,
+textarea {
+  font-size: 1rem;
+  padding: 1rem;
+  border: 0px;
+  color: black;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.muestreo-form input:focus {
+  outline: 0;
+}
+
+#divMap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#divCoordenadas {
+  margin-left: 1rem;
+  border-radius: 20px;
+  width: 20%;
+  display: flex;
+  padding: 0 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: rgba(218, 218, 218, 0.133);
+}
+
+#divCoordenadas label {
+  font-size: 1rem;
+}
+
+#imgTierra {
+  width: 80%;
+  border-radius: 100%;
+}
+
+#imgTierra:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
+#divCamposMuestreo {
+  line-height: 2;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#divCamposMuestreo label {
+  font-size: 15px;
+}
+
+#divCamposMuestreo input {
+  font-size: 15px;
+}
+
+#divCamposMuestreo #habitat,
+#divCamposMuestreo #observaciones {
+  border: 0;
+  font-family: var(--font3);
+  border-radius: 5px;
+  font-size: 1rem;
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 50px;
+  max-height: 100px;
+  font-weight: bold;
+}
+
+#div-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-muestreo {
+  background-color: lightgreen;
+  padding: 1rem;
+  border: 0;
+  border-radius: 5px;
+  font-family: var(--font3);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  width: 50%;
+}
