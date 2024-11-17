@@ -1,0 +1,124 @@
+.manage-accounts-container {
+  margin: 100px;
+  background-color: #f4f6f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 20px 0;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-title:hover {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega sombra al pasar el cursor */
+  transform: scale(1.1); /* Efecto de agrandamiento suave */
+  transition: transform 0.3s, text-shadow 0.3s; /* Efecto de transición */
+}
+
+
+.input-field {
+  margin-bottom: 15px;
+}
+
+.create-user-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  &:hover {
+      background-color: #45a049;
+  }
+}
+
+.user-list {
+  margin: 0 auto;          /* Asegura que el contenido esté centrado */
+  width: 100%;             /* Ocupa el 100% del ancho disponible */
+}
+.user-list-card{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-card .button-container {
+  display: flex;
+  gap: 10px;  /* Espacio entre los botones */
+  margin: 10px;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #444;
+  font-size: 1.2rem;
+}
+
+.user-phone,
+.user-role {
+  font-size: 1rem;
+  color: #888;
+}
+
+.edit-btn,
+.delete-btn {
+  margin: 10px;
+  width: auto;
+  padding: 12px 24px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+  &:hover {
+    background-color: #e53935;
+  }
+}
+
+.edit-user-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.save-btn {
+  background-color: #2196F3;
+  color: #fff;
+  &:hover {
+      background-color: #1976D2;
+  }
+}
