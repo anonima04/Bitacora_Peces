@@ -172,13 +172,20 @@ router.get("/bitacoras/fecha/:fecha", async (req, res) => {
   const { fecha } = req.params;
 
   try {
-    // Convertir la fecha a formato 'DD-MM-YYYY' para la comparación
+    // Asegurarse de que la fecha proporcionada sea una cadena válida
     const fechaBuscada = fecha.trim();
 
+    // Verificar si la fecha proporcionada tiene el formato correcto (YYYY-MM-DDTHH:mm)
+    const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+    if (!fechaRegex.test(fechaBuscada)) {
+      return res.status(400).json({ error: "Fecha proporcionada no tiene formato válido (YYYY-MM-DDTHH:mm)" });
+    }
+
+    // Obtener todas las bitácoras que tienen la fecha exacta como string
     const snapshot = await admin
       .firestore()
       .collection("BITACORA")
-      .where("FECHA_CREACION", "==", fechaBuscada) // Compara las fechas exactas como string
+      .where("FECHA_CREACION", "==", fechaBuscada) // Compara las fechas como strings
       .get();
 
     if (snapshot.empty) {
@@ -249,9 +256,28 @@ router.get("/bitacoras/fecha/:fecha", async (req, res) => {
   }
 });
 
-// Buscar muestreo por ubicación y obtener bitácora y especies relacionadas
-router.get("/bitacoras/ubicacion/:ubicacion", async (req, res) => {
-  const { ubicacion } = req.params;
+
+
+// Buscar muestreo por localización aproximada y obtener bitácora y especies relacionadas
+router.get("/bitacoras/localizacion/:lat/:lng", async (req, res) => {
+  const { lat, lng } = req.params;
+
+  if (!lat || !lng) {
+    return res.status(400).json({
+      error: "Debe proporcionar lat y lng para la búsqueda",
+    });
+  }
+
+  const latNum = parseFloat(lat);
+  const lngNum = parseFloat(lng);
+
+  if (isNaN(latNum) || isNaN(lngNum)) {
+    return res.status(400).json({
+      error: "lat y lng deben ser números válidos",
+    });
+  }
+
+  const tolerancia = 0.0001; // Ajusta la tolerancia según la precisión requerida
 
   try {
     // Obtener todos los muestreos
@@ -260,18 +286,22 @@ router.get("/bitacoras/ubicacion/:ubicacion", async (req, res) => {
       .collection("MUESTREO")
       .get();
 
-    // Filtrar los muestreos por ubicación
+    // Filtrar los muestreos por coincidencia aproximada de lat y lng
     const muestreosFiltrados = snapshotMuestreos.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter(
-        (doc) =>
-          doc.UBICACION &&
-          doc.UBICACION.toLowerCase() === ubicacion.trim().toLowerCase()
-      );
+      .filter((doc) => {
+        const localizacion = doc.LOCALIZACION_GEOGRAFICA;
+        if (!localizacion) return false;
+
+        const latDiff = Math.abs(localizacion.lat - latNum);
+        const lngDiff = Math.abs(localizacion.lng - lngNum);
+
+        return latDiff <= tolerancia && lngDiff <= tolerancia;
+      });
 
     if (muestreosFiltrados.length === 0) {
       return res.status(404).json({
-        message: "No se encontraron muestreos con esa ubicación",
+        message: "No se encontraron muestreos en esa localización",
       });
     }
 
@@ -279,28 +309,41 @@ router.get("/bitacoras/ubicacion/:ubicacion", async (req, res) => {
     const resultados = await Promise.all(
       muestreosFiltrados.map(async (muestreo) => {
         // Obtener la bitácora asociada usando el ID_BITACORA
-        const docBitacora = await admin
-          .firestore()
-          .collection("BITACORA")
-          .doc(muestreo.ID_BITACORA)
-          .get();
+        const docBitacora = muestreo.ID_BITACORA
+          ? await admin
+              .firestore()
+              .collection("BITACORA")
+              .doc(muestreo.ID_BITACORA)
+              .get()
+          : null;
 
-        if (!docBitacora.exists) return null; // Si no existe la bitácora, devolver null
+        if (!docBitacora || !docBitacora.exists) {
+          console.error(`Bitácora no encontrada para ID_BITACORA: ${muestreo.ID_BITACORA}`);
+          return null; // Si no existe la bitácora, devolver null
+        }
 
         const bitacoraData = docBitacora.data();
 
         // Obtener las especies asociadas a este muestreo
-        const especies = await Promise.all(
-          muestreo.ESPECIES.map(async (especieId) => {
-            const docEspecie = await admin
-              .firestore()
-              .collection("ESPECIE")
-              .doc(especieId)
-              .get();
-
-            return docEspecie.exists ? docEspecie.data() : null;
-          })
-        );
+        const especies = Array.isArray(muestreo.ESPECIES)
+          ? await Promise.all(
+              muestreo.ESPECIES.filter(
+                (especieId) => especieId && typeof especieId === "string" && especieId.trim() !== ""
+              ).map(async (especieId) => {
+                try {
+                  const docEspecie = await admin
+                    .firestore()
+                    .collection("ESPECIE")
+                    .doc(especieId)
+                    .get();
+                  return docEspecie.exists ? docEspecie.data() : null;
+                } catch (error) {
+                  console.error(`Error al obtener especie con ID: ${especieId}`, error);
+                  return null;
+                }
+              })
+            )
+          : [];
 
         // Retornar el muestreo con la bitácora y las especies asociadas
         return {
@@ -320,10 +363,11 @@ router.get("/bitacoras/ubicacion/:ubicacion", async (req, res) => {
 
     res.json(validResultados);
   } catch (error) {
-    console.error("Error al buscar por ubicación:", error);
+    console.error("Error al buscar por localización:", error);
     res.status(500).json({ error: "Error al buscar muestreos" });
   }
 });
+
 
 // Buscar bitácora por especie
 router.get("/bitacoras/especie/:especie", async (req, res) => {
