@@ -9,17 +9,19 @@ import Home from "./Page/Home/Home";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
-import FormBitacora from "./Components/FormBitacora/FormBitacora";
+import FormBitacora from "./Components/RegistrarBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
-
 import "./Fonts.css"; // Familia de fuentes GLOBAL
+import ProfilePage from "./Page/ProfilePage/ProfilePage";
+import File from "./Components/File/File";
+import TableBitacora from "./Components/TableBitacora/TableBitacora";
 
 function App() {
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recoverPass" element={<RecoverPassword />} />
         <Route path="/consejos" element={<TipsPage nav={true} />} />
@@ -46,19 +48,19 @@ function App() {
             </ProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/perfil/:userId"
           element={
             <ProtectedRoute ruta={"/login"}>
-              <ProfilePage/> 
+              <ProfilePage />
             </ProtectedRoute>
           }
-          ></Route>
-          <Route
+        ></Route>
+        <Route
           path="/file/:idbitacora"
           element={
             <ProtectedRoute ruta={"/login"}>
-              <File/> 
+              <File />
             </ProtectedRoute>
           }
         />
@@ -70,6 +72,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/verBitacoras" element={<TableBitacora />} />
       </Routes>
     </Router>
   );
