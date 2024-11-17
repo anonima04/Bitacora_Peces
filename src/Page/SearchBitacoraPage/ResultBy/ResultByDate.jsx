@@ -2,7 +2,7 @@
 
 const ResultByDate = () => {
   return (
-    <div>ResultByDate</div>
+    <div>hidlalls</div>
   )
 }
 
