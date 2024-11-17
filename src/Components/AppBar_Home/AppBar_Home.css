@@ -4,8 +4,12 @@
   align-items: center;
   gap: 2rem;
   background-color: rgb(0, 0, 0);
-  background-color: eed;
   border-bottom: solid 1px white;
+}
+
+#span-home,
+.a-page {
+  cursor: pointer;
 }
 
 .logoPag {
@@ -34,12 +38,12 @@
 .a-page {
   color: white;
   text-decoration: none;
-  padding: 0 1rem;
+  padding: 5px;
   border-right: solid 1px white;
 }
 
 .a-page:hover {
-  background: rgb(175, 234, 175);
+  background: rgb(0, 255, 0);
   border: 0;
   border-radius: 10px;
   transition: background 1s ease;
