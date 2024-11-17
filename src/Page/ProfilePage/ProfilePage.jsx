@@ -1,16 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  getDoc,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
 import { useParams } from "react-router-dom";
-
-import { db } from "../../Firebase/firebase";
-// import PropTypes from "prop-types";
 import "./ProfilePage.css";
 import Footer from "../../Components/Footer/Footer";
 import AppBar_Home from "../../Components/AppBar_Home/AppBar_Home";
@@ -20,41 +9,37 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [bitacoras, setBitacoras] = useState(null);
-  const [muestreo, setMuestreo] = useState(null);
+  const [bitacoras, setBitacoras] = useState([]);
+  const [muestreo, setMuestreo] = useState([]);
 
+  // Fetch usuario desde el backend
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userDoc = doc(db, "PERSONA", userId);
-        const userSnapshot = await getDoc(userDoc);
-
-        if (userSnapshot.exists()) {
-          //busca al documento y lo lee
-          setUser(userSnapshot.data());
-        } else {
-          console.log("No existe el documento!");
-        }
+        const response = await fetch(`http://localhost:5000/api/persona/${userId}`);
+        if (!response.ok) throw new Error('Error al obtener usuario');
+        
+        const userData = await response.json();
+        setUser(userData);
       } catch (error) {
-        console.error("Error haciendo fetching:", error);
+        console.error("Error haciendo fetching de usuario:", error);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-
     fetchUser();
   }, [userId]);
 
+  // Fetch bitácoras desde el backend
   useEffect(() => {
     const fetchBitacoras = async () => {
       try {
-        const bitacoraCollection = collection(db, "BITACORA");
-        const q = query(bitacoraCollection, where("ID_PERSONA", "==", userId));
-        const querySnapshot = await getDocs(q);
+        const response = await fetch(`http://localhost:5000/api/bitacora/bitacoras/${userId}`);
+        if (!response.ok) throw new Error('Error al obtener bitácoras');
 
-        const fetchedBitacoras = querySnapshot.docs.map((doc) => doc.data());
-        setBitacoras(fetchedBitacoras);
+        const bitacorasData = await response.json();
+        setBitacoras(bitacorasData);
       } catch (error) {
         console.error("Error haciendo fetching de bitácoras:", error);
         setError(error.message);
@@ -63,15 +48,15 @@ const ProfilePage = () => {
     fetchBitacoras();
   }, [userId]);
 
+  // Fetch muestreos desde el backend
   useEffect(() => {
     const fetchMuestreo = async () => {
       try {
-        const muestreoCollection = collection(db, "MUESTREO");
-        const q = query(muestreoCollection, where("ID_PERSONA", "==", userId));
-        const querySnapshot = await getDocs(q);
+        const response = await fetch(`http://localhost:5000/api/muestra/muestreo/${userId}`);
+        if (!response.ok) throw new Error('Error al obtener muestreo');
 
-        const fetchedMuestreo = querySnapshot.docs.map((doc) => doc.data());
-        setMuestreo(fetchedMuestreo);
+        const muestreoData = await response.json();
+        setMuestreo(muestreoData);
       } catch (error) {
         console.error("Error haciendo fetching de muestreo:", error);
         setError(error.message);
@@ -85,7 +70,7 @@ const ProfilePage = () => {
 
   return (
     <div id="body-div-profile">
-      <AppBar_Home></AppBar_Home>
+      <AppBar_Home />
       <section id="profile" className="profile-section">
         <div className="profile-container">
           <img
@@ -94,20 +79,11 @@ const ProfilePage = () => {
             className="profile-pic"
           />
           <h2>
-            {user.PRIMER_NOMBRE} {user.SEGUNDO_NOMBRE} {user.PRIMER_APELLIDO}{" "}
-            {user.SEGUNDO_APELLIDO}
+            {user.PRIMER_NOMBRE} {user.SEGUNDO_NOMBRE} {user.PRIMER_APELLIDO} {user.SEGUNDO_APELLIDO}
           </h2>
-          <p>
-            <strong>EMAIL: </strong> {user.CORREO}
-          </p>
-          <p>
-            <strong>ROL: </strong>
-            {user.ROL}
-          </p>
-          <p>
-            <strong>TELEFONO: </strong>
-            {user.TELEFONO}
-          </p>
+          <p><strong>EMAIL: </strong>{user.CORREO}</p>
+          <p><strong>ROL: </strong>{user.ROL}</p>
+          <p><strong>TELEFONO: </strong>{user.TELEFONO}</p>
         </div>
       </section>
 
@@ -116,47 +92,30 @@ const ProfilePage = () => {
         {bitacoras.length > 0 ? (
           bitacoras.map((bitacora, index) => (
             <div key={index} className="bitacora-item">
-              <p>
-                <strong>TITULO: </strong>
-                {bitacora.TITULO}
-              </p>
-              <p>
-                <strong>DESCRIPCION:</strong> {bitacora.DESCRIPCION}
-              </p>
-              <p>
-                {/* <strong>FECHA CREACION:</strong> {bitacora.FECHA_CREACION} */}
-              </p>
+              <p><strong>TITULO: </strong>{bitacora.TITULO}</p>
+              <p><strong>DESCRIPCION:</strong> {bitacora.DESCRIPCION}</p>
             </div>
           ))
         ) : (
           <p>No hay bitácoras colaboradas</p>
         )}
       </section>
+
       <section className="muestra-section">
         <h2>Muestras creadas</h2>
         {muestreo.length > 0 ? (
           muestreo.map((muestra, index) => (
             <div key={index} className="muestra-item">
-              <p>
-                <strong>OBSERVACION:</strong> {muestra.OBSERVACION}
-              </p>
-              <p>
-                <strong>CONDICION CLIMATICA:</strong>{" "}
-                {muestra.CONDICION_CLIMATICA}
-              </p>
-              <p>
-                <strong>DESCRIPCION:</strong> {muestra.DESCRIPCION_HABITAD}
-              </p>
-              <p>
-                <strong>CANTIDAD MUESTRAS:</strong> {muestra.CANT_MUESTRA}
-              </p>
+              <p><strong>OBSERVACION:</strong> {muestra.OBSERVACION}</p>
+              <p><strong>CONDICION CLIMATICA:</strong> {muestra.CONDICION_CLIMATICA}</p>
+              <p><strong>DESCRIPCION:</strong> {muestra.DESCRIPCION_HABITAD}</p>
             </div>
           ))
         ) : (
           <p>No hay muestras creadas</p>
         )}
       </section>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

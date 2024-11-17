@@ -16,6 +16,8 @@ import "./Fonts.css"; // Familia de fuentes GLOBAL
 
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
 import File from './Components/File/File';
+import ManageAcountsPage from "./Page/ManageAcountsPage/ManageAcountsPage";
+import SearchBitacoraPage from './Page/SearchBitacoraPage/SearchBitacoraPage';
 
 
 function App() {
@@ -37,6 +39,17 @@ function App() {
             <ProtectedRoute ruta={"/login"}>
               <ContextRegistroUser>
                 <RegisterUser />
+              </ContextRegistroUser>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/gestionarCuentas"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <ContextRegistroUser>
+                < ManageAcountsPage/>
               </ContextRegistroUser>
             </ProtectedRoute>
           }
@@ -70,7 +83,15 @@ function App() {
           path="/crearBitacora"
           element={
             <ProtectedRoute ruta={"/login"}>
-              <FormBitacora /> {/*Children */}
+              <FormBitacora /> 
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/buscarBitacora"
+          element={
+            <ProtectedRoute ruta={"/login"}>
+              <SearchBitacoraPage></SearchBitacoraPage>
             </ProtectedRoute>
           }
         />
