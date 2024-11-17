@@ -10,13 +10,39 @@ import { getAuth, signOut } from "firebase/auth";
 import {db, appFireBase} from "../../Firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Crear", "Buscar"];
+const pages = ["Crear", "Buscar Bitacoras"];
 const rutas = ["/crearBitacora", "/buscarBitacora"];
 const auth = getAuth(appFireBase);
 
 function AppBar_Home() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isAdmin, setIsAdmin] = React.useState(false); // Nuevo estado para verificar el rol
   const navigate = useNavigate(); // Inicializa useNavigate
+
+  React.useEffect(() => {
+    const fetchUserRole = async () => {
+      const userUid = auth.currentUser.uid;
+      console.log(userUid);// UID del usuario autenticado
+      try {
+        const q = query(collection(db, "PERSONA"), where("UID", "==", userUid));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const userData = querySnapshot.docs[0].data();
+          // Suponiendo que el rol del usuario está en un campo 'rol'
+          if (userData.ROL === "Administrador") {
+            setIsAdmin(true);
+          }
+        } else {
+          console.error("No se encontró el documento de persona");
+        }
+      } catch (error) {
+        console.error("Error al obtener rol de usuario:", error);
+      }
+    };
+
+    fetchUserRole();
+  }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,6 +120,12 @@ function AppBar_Home() {
                 {page}
               </a>
             ))}
+            {/* Agregar "Gestionar Cuentas" solo si es admin */}
+            {isAdmin && (
+              <a className="a-page" href="/gestionarCuentas">
+                Gestionar Cuentas
+              </a>
+            )}
           </div>
         </div>
         {/*  */}
@@ -122,6 +154,7 @@ function AppBar_Home() {
           >
             <MenuItem onClick={handleProfile}>Perfil</MenuItem>
             <MenuItem onClick={handleFile}>Bitacora</MenuItem>
+           
             <MenuItem onClick={handleClose}>Cerrar Sesion</MenuItem>
           </Menu>
         </div>
