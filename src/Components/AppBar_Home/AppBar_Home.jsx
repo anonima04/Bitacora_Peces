@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AppBar, Container } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
@@ -18,7 +19,6 @@ import {
 import TipsPage from "../../Page/TipsPage/TipsPage.jsx";
 import { signOut } from "firebase/auth";
 import TableBitacora from "../TableBitacora/TableBitacora.jsx";
-import RegistrarBitacora from "../RegistrarBitacora/FormBitacora.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ManageAcountsPage from "../../Page/ManageAcountsPage/ManageAcountsPage.jsx";
 import SearchBitacoraPage from "../../Page/SearchBitacoraPage/SearchBitacoraPage.jsx";
@@ -106,7 +106,14 @@ function AppBar_Home() {
             <span
               id="span-home"
               onClick={() =>
-                actualizarVistaComponentes(true, false, false, false, false, false)
+                actualizarVistaComponentes(
+                  true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                )
               }
             >
               BITAC-DS
@@ -116,7 +123,14 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/crearBitacora");
-                  actualizarVistaComponentes(false, true, false, false, false, false);
+                  actualizarVistaComponentes(
+                    false,
+                    true,
+                    false,
+                    false,
+                    false,
+                    false
+                  );
                 }}
               >
                 Nueva Bitacora
@@ -125,7 +139,14 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/verBitacoras");
-                  actualizarVistaComponentes(false, false, true, false, false, false);
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false
+                  );
                 }}
               >
                 Mis Bitacoras
@@ -135,7 +156,14 @@ function AppBar_Home() {
                 <a
                   className="a-page"
                   onClick={() =>
-                    actualizarVistaComponentes(false, false, false, true, false, false)
+                    actualizarVistaComponentes(
+                      false,
+                      false,
+                      false,
+                      true,
+                      false,
+                      false
+                    )
                   }
                 >
                   Gestionar Cuentas
@@ -146,7 +174,14 @@ function AppBar_Home() {
               <a
                 className="a-page"
                 onClick={() =>
-                  actualizarVistaComponentes(false, false, false, false, true, false)
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    false
+                  )
                 }
               >
                 Buscar Bitacoras
@@ -154,7 +189,14 @@ function AppBar_Home() {
               <a
                 className="a-page"
                 onClick={() =>
-                  actualizarVistaComponentes(false, false, false, false,false, true)
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true
+                  )
                 }
               >
                 Editar Bitacoras
@@ -197,11 +239,10 @@ function AppBar_Home() {
       </AppBar>
       {/* Mostrar páginas según los estados */}
       {verTips && <TipsPage />}
-      {crearBitacora && <RegistrarBitacora />}
       {bitacoras && <TableBitacora />}
       {gestionarUsuarios && <ManageAcountsPage />}
       {buscarBitacora && <SearchBitacoraPage />}
-      {editar && <PruebaEditar/>}
+      {editar && <PruebaEditar />}
     </>
   );
 }
