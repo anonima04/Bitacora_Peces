@@ -4,49 +4,63 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./AppBar_Home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getPersonaID } from "../../Firebase/ProfilePage";
 import { useNavigate } from "react-router-dom";
-
-
-
-const pages = ["Crear", "Buscar Bitacoras"];
-const rutas = ["/crearBitacora", "/buscarBitacora"];
-
-const auth = getAuth(appFireBase);
+import {
+  query,
+  collection,
+  getDocs,
+  db,
+  where,
+  auth,
+} from "../../Firebase/firebase.js";
+import TipsPage from "../../Page/TipsPage/TipsPage.jsx";
+import { signOut } from "firebase/auth";
+import TableBitacora from "../TableBitacora/TableBitacora.jsx";
+import RegistrarBitacora from "../RegistrarBitacora/FormBitacora.jsx";
+import { useAuthState } from "react-firebase-hooks/auth";
+import ManageAcountsPage from "../../Page/ManageAcountsPage/ManageAcountsPage.jsx";
+import SearchBitacoraPage from "../../Page/SearchBitacoraPage/SearchBitacoraPage.jsx";
 
 function AppBar_Home() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const [isAdmin, setIsAdmin] = React.useState(false); // Nuevo estado para verificar el rol
-
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false); // Nuevo estado para verificar el rol
   const navigate = useNavigate(); // Inicializa useNavigate
+  const [open, setOpen] = useState(false);
+  const [bitacoras, setBitacoras] = useState(false);
+  const [crearBitacora, setCrearBitacora] = useState(false);
+  const [buscarBitacora, setBuscarBitacora] = useState(false);
+  const [verTips, setTips] = useState(true);
+  const [user] = useAuthState(auth); // Obtener usuario actual en REACT
+  const [gestionarUsuarios, setGestionarUsuarios] = useState(false);
 
+  useEffect(() => {
+    if (!user) return; // No hacer nada si no hay usuario autenticado
 
-  React.useEffect(() => {
     const fetchUserRole = async () => {
-      const userUid = auth.currentUser.uid;
-      console.log(userUid);// UID del usuario autenticado
       try {
-        const q = query(collection(db, "PERSONA"), where("UID", "==", userUid));
+        const q = query(
+          collection(db, "PERSONA"),
+          where("UID", "==", user.uid)
+        );
+
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
           const userData = querySnapshot.docs[0].data();
-          // Suponiendo que el rol del usuario está en un campo 'rol'
           if (userData.ROL === "Administrador") {
             setIsAdmin(true);
           }
         } else {
-          console.error("No se encontró el documento de persona");
+          console.log("No se encontró el documento de persona");
         }
       } catch (error) {
-        console.error("Error al obtener rol de usuario:", error);
+        console.log("Error al obtener rol de usuario:", error);
       }
     };
-
     fetchUserRole();
-  }, []);
+  }, [user]);
 
   const handleMenu = (event) => {
     setOpen(!open);
@@ -65,40 +79,19 @@ function AppBar_Home() {
       });
   };
 
-  // const handleFile = async () => {
-  //   const userUid = auth.currentUser.uid;
-
-  //   try {
-  //     // Consulta para obtener el ID de la persona autenticada
-  //     const personaQuery = query(
-  //       collection(db, "PERSONA"),
-  //       where("UID", "==", userUid)
-  //     );
-  //     const personaSnapshot = await getDocs(personaQuery);
-
-  //     if (!personaSnapshot.empty) {
-  //       const personaId = personaSnapshot.docs[0].id;
-
-  //       // Consulta para obtener la bitácora asociada al `personaId`
-  //       const bitacoraQuery = query(
-  //         collection(db, "BITACORA"),
-  //         where("ID_PERSONA", "==", personaId)
-  //       );
-  //       const bitacoraSnapshot = await getDocs(bitacoraQuery);
-
-  //       if (!bitacoraSnapshot.empty) {
-  //         const bitacoraId = bitacoraSnapshot.docs[0].id;
-  //         navigate(`/file/${bitacoraId}`); // Redirige a `FilePage` con el ID de la bitácora en la URL
-  //       } else {
-  //         console.error("No se encontró ninguna bitácora para la persona");
-  //       }
-  //     } else {
-  //       console.error("No se encontró el documento de persona");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al obtener bitácora:", error);
-  //   }
-  // };
+  const actualizarVistaComponentes = (
+    Tips,
+    NuevaBitacora,
+    verBitacoras,
+    verGestionarUsuarios,
+    buscar
+  ) => {
+    setTips(Tips);
+    setCrearBitacora(NuevaBitacora);
+    setBitacoras(verBitacoras);
+    setGestionarUsuarios(verGestionarUsuarios);
+    setBuscarBitacora(buscar);
+  };
 
   return (
     <>
@@ -106,14 +99,20 @@ function AppBar_Home() {
         <Container maxWidth="100%" className="container-appBar_Home">
           <div id="primer-div">
             <img src="/logoPag1.jpg" alt="Logo Pagina" className="logoPag" />
-            <span id="span-home" onClick={() => setBitacoras(false)}>
+            <span
+              id="span-home"
+              onClick={() =>
+                actualizarVistaComponentes(true, false, false, false, false)
+              }
+            >
               BITAC-DS
             </span>
             <div className="pages">
               <a
                 className="a-page"
                 onClick={() => {
-                  navigate("/crearBitacora");
+                  // navigate("/crearBitacora");
+                  actualizarVistaComponentes(false, true, false, false, false);
                 }}
               >
                 Nueva Bitacora
@@ -122,23 +121,35 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/verBitacoras");
-                  setBitacoras(true);
+                  actualizarVistaComponentes(false, false, true, false, false);
                 }}
               >
                 Mis Bitacoras
               </a>
+              {/* Agregar "Gestionar Cuentas" solo si es admin */}
+              {isAdmin && (
+                <a
+                  className="a-page"
+                  onClick={() =>
+                    actualizarVistaComponentes(false, false, false, true, false)
+                  }
+                >
+                  Gestionar Cuentas
+                </a>
+              )}
+              {/* Agregar "Buscar bitacora" solo si es admin */}
 
-            ))}
-            {/* Agregar "Gestionar Cuentas" solo si es admin */}
-            {isAdmin && (
-              <a className="a-page" href="/gestionarCuentas">
-                Gestionar Cuentas
+              <a
+                className="a-page"
+                onClick={() =>
+                  actualizarVistaComponentes(false, false, false, false, true)
+                }
+              >
+                Buscar Bitacoras
               </a>
-            )}
-
+            </div>
           </div>
-          {/*  */}
-
+          {/* Menú de perfil */}
           <div className="perfil-menu" onClick={handleMenu}>
             <IconButton>
               <AccountCircle
@@ -150,7 +161,6 @@ function AppBar_Home() {
                 }}
               />
             </IconButton>
-            {/*  */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -171,37 +181,15 @@ function AppBar_Home() {
               <MenuItem onClick={handleClose}>Cerrar Sesion</MenuItem>
             </Menu>
           </div>
-          {/*  */}
-
-
-          {namePage === "Crear" ? (
-            <FormBitacora />
-          ) : namePage === "Buscar" ? (
-            <div>BUSCAR</div>
-          ) : (
-            <TipsPage /> //No envio prop -> no se renderiza el NavBar
-          )}
-
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleProfile}>Perfil</MenuItem>
-            <MenuItem onClick={handleFile}>Bitacora</MenuItem>
-           
-            <MenuItem onClick={handleClose}>Cerrar Sesion</MenuItem>
-          </Menu>
-        </div>
-        {/*  */}
-      </Container>
-    </AppBar>
-
+        </Container>
+      </AppBar>
+      {/* Mostrar páginas según los estados */}
+      {verTips && <TipsPage />}
+      {crearBitacora && <RegistrarBitacora />}
+      {bitacoras && <TableBitacora />}
+      {gestionarUsuarios && <ManageAcountsPage />}
+      {buscarBitacora && <SearchBitacoraPage />}
+    </>
   );
 }
 

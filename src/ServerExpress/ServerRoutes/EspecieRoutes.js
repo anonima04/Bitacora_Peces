@@ -68,4 +68,41 @@ router.get('/muestra/:idMuestra', async (req, res) => {
     }
   });
 
+  // Endpoint para obtener la información de una especie por ID
+router.get('/:id', async (req, res) => {
+  const { id } = req.params; // Captura el ID de la especie desde los parámetros de la URL
+
+  try {
+    // Consulta el documento en la colección "ESPECIE" por su ID
+    const docSnapshot = await admin.firestore().collection('ESPECIE').doc(id).get();
+
+    // Si el documento no existe, envía un mensaje de error
+    if (!docSnapshot.exists) {
+      return res.status(404).json({ message: 'No se encontró la especie con ese ID' });
+    }
+
+    // Si el documento existe, extrae sus datos
+    const especieData = { id: docSnapshot.id, ...docSnapshot.data() };
+
+    // Devuelve la información de la especie
+    res.json(especieData);
+  } catch (error) {
+    console.error("Error al obtener la especie:", error);
+    res.status(500).json({ error: 'Error al obtener la especie' });
+  }
+});
+router.delete("/eliminar/:idEspecie", async (req, res) => {
+  const { idEspecie} = req.params;
+  
+  try {
+    const bitacoraRef = admin.firestore().collection('ESPECIE').doc(idEspecie);
+    await bitacoraRef.delete();
+    res.status(200).json({ message: `Especie con ID ${idEspecie} eliminada exitosamente` });
+  } catch (error) {
+    console.error("Error al eliminar la especie:", error);
+    res.status(500).json({ error: 'Error al eliminar la especie' });
+  }
+});
+
+
 export default router;

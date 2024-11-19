@@ -1,87 +1,99 @@
-/* SearchBitacoraPage.css */
+
 .search-bitacora-page {
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
+  background: #040404ab;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .search-container {
-  margin-bottom: 20px;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff91;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-buscar {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #333;
 }
 
 .search-form {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.search-select, .search-input {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.search-select,
+.search-input,
+.search-button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+}
+
+.search-select {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.search-input {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .search-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #3498db;
   color: white;
-  border: none;
-  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: none;
 }
 
 .search-button:hover {
-  background-color: #45a049;
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.loading-message {
+  margin: 20px auto;
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
 }
 
 .results-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.result-item {
-  background-color: #f9f9f9;
+  margin-top: 40px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.muestreo-card {
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.especie-card {
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.especie-img {
-  width: 100%;
-  max-width: 200px;
-  margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+.results-container p {
+  font-size: 1.1rem;
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
+  color: #7f8c8d;
 }
 
-.loading-message, .error-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #ff5722;
+.results-container h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-button {
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}

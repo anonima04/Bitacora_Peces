@@ -83,7 +83,7 @@ router.post("/bitacora", async (req, res) => {
   }
 });
 
-// Buscar bitácora por título
+//buscar bitacoras por titulos
 router.get("/bitacoras/titulo/:titulo", async (req, res) => {
   const { titulo } = req.params;
 
@@ -123,7 +123,7 @@ router.get("/bitacoras/titulo/:titulo", async (req, res) => {
 
             if (!docMuestreo.exists) return null;
 
-            const muestreoData = docMuestreo.data();
+            const muestreoData = { id: docMuestreo.id, ...docMuestreo.data() };
 
             // Obtener las especies asociadas al muestreo (asumimos que las especies están en un campo llamado 'ESPECIES')
             const especieIds = muestreoData.ESPECIES || [];
@@ -135,7 +135,9 @@ router.get("/bitacoras/titulo/:titulo", async (req, res) => {
                   .doc(especieId)
                   .get();
 
-                return docEspecie.exists ? docEspecie.data() : null;
+                return docEspecie.exists
+                  ? { id: docEspecie.id, ...docEspecie.data() }
+                  : null;
               })
             );
 
@@ -167,6 +169,7 @@ router.get("/bitacoras/titulo/:titulo", async (req, res) => {
 });
 
 
+
 // Buscar bitácoras por fecha de creación
 router.get("/bitacoras/fecha/:fecha", async (req, res) => {
   const { fecha } = req.params;
@@ -175,8 +178,8 @@ router.get("/bitacoras/fecha/:fecha", async (req, res) => {
     // Asegurarse de que la fecha proporcionada sea una cadena válida
     const fechaBuscada = fecha.trim();
 
-    // Verificar si la fecha proporcionada tiene el formato correcto (YYYY-MM-DDTHH:mm)
-    const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+    // Verificar si la fecha proporcionada tiene el formato correcto (YYYY-MM-DD)
+    const fechaRegex = /^\d{4}-\d{2}-\d{2}/;
     if (!fechaRegex.test(fechaBuscada)) {
       return res.status(400).json({ error: "Fecha proporcionada no tiene formato válido (YYYY-MM-DDTHH:mm)" });
     }
@@ -259,46 +262,64 @@ router.get("/bitacoras/fecha/:fecha", async (req, res) => {
 
 
 // Buscar muestreo por localización aproximada y obtener bitácora y especies relacionadas
+// Buscar muestreo por localización aproximada y obtener bitácora y especies relacionadas
 router.get("/bitacoras/localizacion/:lat/:lng", async (req, res) => {
   const { lat, lng } = req.params;
 
+  // Validar que se pasen los parámetros lat y lng
   if (!lat || !lng) {
     return res.status(400).json({
       error: "Debe proporcionar lat y lng para la búsqueda",
     });
   }
 
+  // Convertir las coordenadas lat y lng a números
   const latNum = parseFloat(lat);
   const lngNum = parseFloat(lng);
 
+  // Validar que las coordenadas sean números válidos
   if (isNaN(latNum) || isNaN(lngNum)) {
     return res.status(400).json({
       error: "lat y lng deben ser números válidos",
     });
   }
 
-  const tolerancia = 0.0001; // Ajusta la tolerancia según la precisión requerida
+  // Definir la tolerancia para la búsqueda aproximada de coordenadas
+  const tolerancia = 0.0001; // Puedes ajustar esta tolerancia según la precisión que necesites
 
   try {
-    // Obtener todos los muestreos
+    // Obtener todos los muestreos desde Firestore
     const snapshotMuestreos = await admin
       .firestore()
       .collection("MUESTREO")
       .get();
 
-    // Filtrar los muestreos por coincidencia aproximada de lat y lng
+    // Filtrar los muestreos según la proximidad de las coordenadas
     const muestreosFiltrados = snapshotMuestreos.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
       .filter((doc) => {
         const localizacion = doc.LOCALIZACION_GEOGRAFICA;
         if (!localizacion) return false;
 
-        const latDiff = Math.abs(localizacion.lat - latNum);
-        const lngDiff = Math.abs(localizacion.lng - lngNum);
+        // Convertir las coordenadas de Firestore a números
+        const latDoc = parseFloat(localizacion.lat); // Convertir a número
+        const lngDoc = parseFloat(localizacion.lng); // Convertir a número
 
+        // Verificar que las coordenadas sean números válidos
+        if (isNaN(latDoc) || isNaN(lngDoc)) {
+          console.error("Coordenadas inválidas en LOCALIZACION_GEOGRAFICA:", localizacion);
+          return false;
+        }
+
+        // Calcular la diferencia de coordenadas
+        const latDiff = Math.abs(latDoc - latNum);
+        const lngDiff = Math.abs(lngDoc - lngNum);
+
+        // Verificar si la diferencia está dentro de la tolerancia
         return latDiff <= tolerancia && lngDiff <= tolerancia;
       });
 
+    // Si no se encuentran muestreos cercanos, devolver un error
     if (muestreosFiltrados.length === 0) {
       return res.status(404).json({
         message: "No se encontraron muestreos en esa localización",
@@ -356,17 +377,19 @@ router.get("/bitacoras/localizacion/:lat/:lng", async (req, res) => {
       })
     );
 
-    // Filtramos las bitácoras válidas (en caso de que alguna no exista)
+    // Filtrar las bitácoras válidas (en caso de que alguna no exista)
     const validResultados = resultados.filter(
       (resultado) => resultado !== null
     );
 
+    // Enviar los resultados de las bitácoras encontradas
     res.json(validResultados);
   } catch (error) {
     console.error("Error al buscar por localización:", error);
     res.status(500).json({ error: "Error al buscar muestreos" });
   }
 });
+
 
 
 // Buscar bitácora por especie
@@ -414,19 +437,34 @@ router.get("/bitacoras/especie/:especie", async (req, res) => {
     // Obtener las bitácoras asociadas a los muestreos filtrados
     const resultadosBitacoras = await Promise.all(
       muestreosFiltrados.map(async (muestreo) => {
-        const docBitacora = await admin.firestore().collection("BITACORA").doc(muestreo.ID_BITACORA).get();
+        const docBitacora = await admin
+          .firestore()
+          .collection("BITACORA")
+          .doc(muestreo.ID_BITACORA)
+          .get();
 
         if (!docBitacora.exists) return null;
 
         const bitacoraData = docBitacora.data();
 
+        // Agregar información detallada de las especies presentes en este muestreo
+        const especies = muestreo.ESPECIES.map((idEspecie) =>
+          snapshotEspecies.docs
+            .map((doc) => ({ id: doc.id, ...doc.data() }))
+            .find((doc) => doc.id === idEspecie)
+        );
+
         return {
           ...bitacoraData,
-          muestreo: muestreo,
+          muestreo: {
+            ...muestreo,
+            especies,
+          },
         };
       })
     );
 
+    // Filtrar los resultados nulos (si no se encontró información en alguna bitácora)
     const validResultados = resultadosBitacoras.filter((resultado) => resultado !== null);
 
     if (validResultados.length === 0) {
@@ -435,13 +473,72 @@ router.get("/bitacoras/especie/:especie", async (req, res) => {
       });
     }
 
-    // Enviar los resultados filtrados
+    // Enviar los resultados filtrados con las bitácoras, muestreos y especies
     res.json(validResultados);
   } catch (error) {
     console.error("Error al buscar bitácoras por especie:", error);
     res.status(500).json({ error: "Error al buscar bitácoras por especie" });
   }
 });
+
+
+
+router.delete("/bitacoras/eliminar/:idBitacora", async (req, res) => {
+  const { idBitacora } = req.params;
+  
+  try {
+    const bitacoraRef = admin.firestore().collection('BITACORA').doc(idBitacora);
+    await bitacoraRef.delete();
+    res.status(200).json({ message: `Bitácora con ID ${idBitacora} eliminada exitosamente` });
+  } catch (error) {
+    console.error("Error al eliminar la bitácora:", error);
+    res.status(500).json({ error: 'Error al eliminar la bitácora' });
+  }
+});
+
+router.patch('/actualizar/:idBitacora', async (req, res) => {
+  try {
+    const { idBitacora } = req.params;
+    const updates = req.body;
+
+    // Actualizar los campos específicos de la bitácora
+    const result = await Bitacora.updateOne({ _id: idBitacora }, { $set: updates });
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: "Bitácora no encontrada o sin cambios." });
+    }
+
+    res.status(200).json({ message: "Bitácora actualizada con éxito." });
+  } catch (error) {
+    console.error("Error actualizando la bitácora:", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+});
+
+
+router.patch('/actualizar-muestreos/:idBitacora', async (req, res) => {
+  try {
+    const { idBitacora } = req.params;
+    const { muestreoId } = req.body;
+
+    // Actualizar la bitácora eliminando el ID del muestreo
+    const result = await Bitacora.updateOne(
+      { _id: idBitacora },
+      { $pull: { muestreos: muestreoId } } // Elimina el ID del muestreo del array
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: "Bitácora no encontrada o sin cambios." });
+    }
+
+    res.status(200).json({ message: "Bitácora actualizada con éxito." });
+  } catch (error) {
+    console.error("Error actualizando la bitácora:", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+});
+
+
 
 
 export default router;

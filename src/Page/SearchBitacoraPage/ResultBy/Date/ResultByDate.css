@@ -1,0 +1,104 @@
+/* Contenedor principal */
+.results-wrapper {
+    padding: 2rem;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Elementos de cada resultado */
+  .result-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Títulos principales centrados */
+  .result-title,
+  .muestreos-header,
+  .especies-title {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Descripciones y fechas alineadas a la izquierda */
+  .result-description,
+  .result-date,
+  .muestreo-info,
+  .especie-name,
+  .especie-common-name,
+  .especie-family,
+  .especie-state,
+  .especie-sample-count {
+    text-align: left;
+    font-size: 1rem;
+    color: #555;
+    margin: 0.5rem 0;
+  }
+  
+  /* Resaltar los títulos de las secciones */
+  .result-header p strong,
+  .muestreo-card p strong,
+  .especie-card p strong {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Contenedor de muestreos */
+  .muestreos-container {
+    margin-top: 1rem;
+  }
+  
+  /* Sección de especies dentro del muestreo */
+  .especies-section {
+    margin-top: 2rem;
+  }
+  
+  /* Contenedor de las fotos */
+  .especie-photos,
+  .imagenes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .especie-photo,
+  .foto {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mensajes sin resultados */
+  .no-results,
+  .no-muestreos,
+  .no-especies,
+  .no-photos {
+    font-size: 1rem;
+    color: #999;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Estilos de cada especie */
+  .especie-card {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .especie-card p {
+    margin-bottom: 0.5rem;
+  }
+  

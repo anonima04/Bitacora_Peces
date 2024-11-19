@@ -1,0 +1,86 @@
+/* Contenedor principal */
+.result-location-container {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tarjetas de bitácora */
+.bitacora-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos centrados */
+.bitacora-card h3,
+.bitacora-card h4,
+.bitacora-card h5 {
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Textos alineados a la izquierda */
+.bitacora-card p {
+  text-align: left;
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+/* Resaltar los títulos de las secciones */
+.bitacora-card p strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Contenedor de las imágenes */
+.imagenes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.foto {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensajes sin resultados */
+.no-results,
+.no-muestreos,
+.no-especies,
+.no-photos {
+  font-size: 1rem;
+  color: #999;
+  text-align: center;
+}
+
+/* Estilos de las especies */
+.especie {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.especie p {
+  margin-bottom: 0.5rem;
+}
+
+.especie strong {
+  font-weight: 600;
+  color: #333;
+}
