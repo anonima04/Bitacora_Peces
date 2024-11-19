@@ -5,7 +5,8 @@
   4. getDownloadURL obtiene la URL de descarga pública de un archivo almacenado en Firebase.
 */
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { addDoc, collection, db } from "./firebase.js";
+import { addDoc, collection, db, where, query, getDocs } from "./firebase.js";
+import { updateDoc, arrayUnion, doc } from "firebase/firestore";
 
 export const subirImagenAStorage = async (carpeta, file) => {
   const storage = getStorage();
@@ -39,8 +40,49 @@ export const addDocumento = async (coleccion, objeto) => {
     // Agregar el documento a la colección
     const docMuestreo = await addDoc(collection(db, coleccion), objeto);
     alert("Documento registrado");
-    return docMuestreo.id; // Retorna el ID del MUESTREO
+    return docMuestreo.id; // Retorna el ID del DOCUMENTO
   } catch (e) {
     alert("Error al agregar el documento: " + e.message);
+  }
+};
+
+export const getPersonaID = async (UID) => {
+  try {
+    // Supone que el UID está asociado a la colección `PERSONA`
+    const q = query(collection(db, "PERSONA"), where("UID", "==", UID)); // Consulta la colección 'PERSONA' buscando el documento donde 'UID' coincide con userUID
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const personaId = querySnapshot.docs[0].id; // ID del documento
+      return personaId;
+    } else {
+      alert("No se encontró el documento de persona");
+    }
+  } catch (error) {
+    alert("Error al obtener ID de persona: " + error.message);
+  }
+};
+
+export const agregarMuestreoBitacora = async (muestreo, ID_Bitacora) => {
+  const documentoID = await addDocumento("MUESTREO", muestreo);
+  const bitacoraRef = doc(db, "BITACORA", ID_Bitacora);
+  await updateDoc(bitacoraRef, {
+    MUESTREOS: arrayUnion(documentoID),
+  });
+  return documentoID;
+};
+
+export const agregarIdBitacora_Especie = async (ids_especies, ID_Muestreo) => {
+  try {
+    //Se recorre cada posicio  de ids de especies
+    for (const ID of ids_especies) {
+      const especieRef = doc(db, "ESPECIE", ID); //Se Referencia al documento de cada especie en la colección 'ESPECIE'
+      //Se actualiza el documento con el nuevo campo ID_BITACORA
+      await updateDoc(especieRef, {
+        ID_MUESTREO: ID_Muestreo,
+      });
+    }
+  } catch (error) {
+    alert("Error al agregar ID_BITACORA a las especies: " + error.message);
   }
 };

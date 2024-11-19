@@ -9,16 +9,10 @@ import Home from "./Page/Home/Home";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
-import FormBitacora from "./Components/RegistrarBitacora/FormBitacora";
-import { ContextRegistroUser } from "./Context/ContextRegistroUser";
+import FormBitacora from "./Components/Registrar_Bitacora/FormBitacora";
 import "./Fonts.css"; // Familia de fuentes GLOBAL
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
-
-import File from './Components/File/File';
-import ManageAcountsPage from "./Page/ManageAcountsPage/ManageAcountsPage";
-import SearchBitacoraPage from './Page/SearchBitacoraPage/SearchBitacoraPage';
-
-
+import File from "./Components/File/File";
 
 function App() {
   return (
@@ -37,23 +31,12 @@ function App() {
           path="/registerUser"
           element={
             <ProtectedRoute ruta={"/login"}>
-              <ContextRegistroUser>
-                <RegisterUser />
-              </ContextRegistroUser>
+              <RegisterUser />
             </ProtectedRoute>
           }
         />
 
-        <Route
-          path="/gestionarCuentas"
-          element={
-            <ProtectedRoute ruta={"/login"}>
-              <ContextRegistroUser>
-                < ManageAcountsPage/>
-              </ContextRegistroUser>
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/formBitacora" element={<FormBitacora />}></Route>
 
         <Route
           path="/home"
@@ -79,24 +62,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/crearBitacora"
-          element={
-            <ProtectedRoute ruta={"/login"}>
-              <FormBitacora /> 
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/buscarBitacora"
-          element={
-            <ProtectedRoute ruta={"/login"}>
-              <SearchBitacoraPage></SearchBitacoraPage>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route path="/verBitacoras" element={<TableBitacora />} />
       </Routes>
     </Router>
   );

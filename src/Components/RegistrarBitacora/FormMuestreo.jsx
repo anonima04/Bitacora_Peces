@@ -1,11 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./FormMuestreo.css";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { getURLFotos, addDocumento } from "../../Firebase/RegisterBitacora.js";
 
+const maxFecha = () => {
+  const fecha = new Date();
+  const anio = fecha.getFullYear(),
+    mes = String(fecha.getMonth() + 1).padStart(2, "0"),
+    dia = String(fecha.getDate()).padStart(2, "0");
+  return `${anio}-${mes}-${dia}`;
+};
+
 export const FormMuestreo = ({ especies, setEspecies, setMuestreos }) => {
-  // const [mostrarEspecies, setMostrarEspecies] = useState(false);
+  const formRef = useRef(null); //Para usar referencia al formulario
   const [coordenadas, setCoordenadas] = useState({
     lat: 1.61438,
     lng: -75.60623,
@@ -20,13 +28,21 @@ export const FormMuestreo = ({ especies, setEspecies, setMuestreos }) => {
 
   const onSubmitMuestreo = async (e) => {
     e.preventDefault();
+    if (formRef.current.checkValidity()) {
+      alert("Todos los campos están completos.");
+      // Aquí puedes proceder con el envío o el procesamiento del formulario
+    } else {
+      alert("Por favor, completa todos los campos obligatorios.");
+    }
+    maxFecha();
+    alert(e.target.fecha.value);
     if (especies.length > 0) {
       const URLFotos = await getURLFotos(
         "Imgs_LugarMuestreo/",
         e.target.fotografias.files
       );
       const muestreo = {
-        FECHA_Y_HORA: e.target.fechaHora.value,
+        FECHA_Y_HORA: e.target.fecha.value,
         LOCALIZACION_GEOGRAFICA: coordenadas,
         CONDICIONES_CLIMATICAS: e.target.conClimaticas.value,
         DESCRIPCION_HABITAT: e.target.habitat.value,
@@ -46,10 +62,10 @@ export const FormMuestreo = ({ especies, setEspecies, setMuestreos }) => {
   };
 
   return (
-    <form className="muestreo-form" onSubmit={onSubmitMuestreo}>
+    <form ref={formRef} className="muestreo-form" onSubmit={onSubmitMuestreo}>
       <h2>Datos del Muestreo</h2>
       <label>Fecha y Hora</label>
-      <input id="fechaHora" type="datetime-local" required />
+      <input id="fecha" type="date" required max={maxFecha()} />
       {/*  */}
       <label>Localización Geografica (Coordenadas)</label>
       <div id="divMap">
