@@ -4,7 +4,10 @@ import { doc, deleteDoc, updateDoc, arrayRemove } from "firebase/firestore";
 import { db } from "../../../../Firebase/firebase"; // Importa tu configuración de Firebase
 import { useState } from "react";
 
+
 const ResultByTitle = ({ busqueda }) => {
+
+
   const [resultados, setResultados] = useState(busqueda);
   if (!busqueda || busqueda.length === 0) {
     return <p className="no-results">No se encontraron resultados</p>;
@@ -112,6 +115,7 @@ const ResultByTitle = ({ busqueda }) => {
 
   return (
     <div className="results-wrapper">
+     
       {busqueda.map((item) => (
         <div key={item.id} className="result-item">
           {/* Botón para eliminar la bitácora */}

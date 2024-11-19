@@ -22,6 +22,7 @@ import RegistrarBitacora from "../RegistrarBitacora/FormBitacora.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ManageAcountsPage from "../../Page/ManageAcountsPage/ManageAcountsPage.jsx";
 import SearchBitacoraPage from "../../Page/SearchBitacoraPage/SearchBitacoraPage.jsx";
+import PruebaEditar from "../../Page/PruebaEditar/Prueba.jsx";
 
 function AppBar_Home() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,6 +35,7 @@ function AppBar_Home() {
   const [verTips, setTips] = useState(true);
   const [user] = useAuthState(auth); // Obtener usuario actual en REACT
   const [gestionarUsuarios, setGestionarUsuarios] = useState(false);
+  const [editar, setEditar] = useState(false);
 
   useEffect(() => {
     if (!user) return; // No hacer nada si no hay usuario autenticado
@@ -84,13 +86,15 @@ function AppBar_Home() {
     NuevaBitacora,
     verBitacoras,
     verGestionarUsuarios,
-    buscar
+    buscar,
+    edit
   ) => {
     setTips(Tips);
     setCrearBitacora(NuevaBitacora);
     setBitacoras(verBitacoras);
     setGestionarUsuarios(verGestionarUsuarios);
     setBuscarBitacora(buscar);
+    setEditar(edit);
   };
 
   return (
@@ -102,7 +106,7 @@ function AppBar_Home() {
             <span
               id="span-home"
               onClick={() =>
-                actualizarVistaComponentes(true, false, false, false, false)
+                actualizarVistaComponentes(true, false, false, false, false, false)
               }
             >
               BITAC-DS
@@ -112,7 +116,7 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/crearBitacora");
-                  actualizarVistaComponentes(false, true, false, false, false);
+                  actualizarVistaComponentes(false, true, false, false, false, false);
                 }}
               >
                 Nueva Bitacora
@@ -121,7 +125,7 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/verBitacoras");
-                  actualizarVistaComponentes(false, false, true, false, false);
+                  actualizarVistaComponentes(false, false, true, false, false, false);
                 }}
               >
                 Mis Bitacoras
@@ -131,7 +135,7 @@ function AppBar_Home() {
                 <a
                   className="a-page"
                   onClick={() =>
-                    actualizarVistaComponentes(false, false, false, true, false)
+                    actualizarVistaComponentes(false, false, false, true, false, false)
                   }
                 >
                   Gestionar Cuentas
@@ -142,10 +146,18 @@ function AppBar_Home() {
               <a
                 className="a-page"
                 onClick={() =>
-                  actualizarVistaComponentes(false, false, false, false, true)
+                  actualizarVistaComponentes(false, false, false, false, true, false)
                 }
               >
                 Buscar Bitacoras
+              </a>
+              <a
+                className="a-page"
+                onClick={() =>
+                  actualizarVistaComponentes(false, false, false, false,false, true)
+                }
+              >
+                Editar Bitacoras
               </a>
             </div>
           </div>
@@ -189,6 +201,7 @@ function AppBar_Home() {
       {bitacoras && <TableBitacora />}
       {gestionarUsuarios && <ManageAcountsPage />}
       {buscarBitacora && <SearchBitacoraPage />}
+      {editar && <PruebaEditar/>}
     </>
   );
 }
