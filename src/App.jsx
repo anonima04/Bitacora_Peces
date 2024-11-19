@@ -20,6 +20,7 @@ import SearchBitacoraPage from './Page/SearchBitacoraPage/SearchBitacoraPage';
 
 
 
+
 function App() {
   return (
     <Router>
@@ -95,7 +96,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+        
+      
         <Route path="/verBitacoras" element={<TableBitacora />} />
       </Routes>
     </Router>

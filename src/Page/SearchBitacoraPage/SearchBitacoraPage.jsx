@@ -7,6 +7,7 @@ import ResultByDate from "./ResultBy/Date/ResultByDate";
 import ResultByLocation from "./ResultBy/Location/ResultByLocation";
 import ResultBySpecies from "./ResultBy/Species/ResultBySpecies";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+// import Prueba from "./ResultBy/PruebaEditar/Prueba";
 
 const SearchBitacoraPage = () => {
   const [busqueda, setBusqueda] = useState([]);
@@ -15,6 +16,7 @@ const SearchBitacoraPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [coordenadas, setCoordenadas] = useState({ lat: "", lng: "" });
+
 
   const handleSearch = async () => {
     // Validación de los campos de búsqueda
@@ -167,7 +169,9 @@ const SearchBitacoraPage = () => {
         <div className="results-container">
           {searchType === "titulo" && <ResultByTitle busqueda={busqueda} />}
           {searchType === "fecha" && <ResultByDate busqueda={busqueda} />}
-          {searchType === "ubicacion" && <ResultByLocation busqueda={busqueda} />}
+          {searchType === "ubicacion" && (
+            <ResultByLocation busqueda={busqueda} />
+          )}
           {searchType === "especie" && <ResultBySpecies busqueda={busqueda} />}
         </div>
       </div>
