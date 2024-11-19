@@ -1,0 +1,107 @@
+/* CSS PADRE FORM ESPECIE */
+.padreCamposEspecie {
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+}
+
+/* CSS PADRE CAMPOS FORM */
+
+.camposEspecie1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.camposEspecie2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* CSS CAMPOS ESPECIE */
+#estadoPlanta {
+  color: gray;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 0 2px 2px cornflowerblue;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: var(--font3);
+  background-color: white;
+}
+
+#estadoPlanta:focus {
+  outline: none;
+}
+
+#fotosEspecies {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font1);
+  box-shadow: 0px 2px 1px lightGreen;
+}
+
+/* CSS "div" BOTONES CREAR */
+
+.div-Btn-CrearMuestreo-Especie {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.btn-FormEspecie {
+  padding: 8px 2rem;
+  border: 0;
+  border-radius: 5px;
+  font-family: var(--font1);
+  font-size: 1.2rem;
+}
+
+.btn-CrearEspecie {
+  background-color: cornflowerblue;
+}
+
+.btn-CrearMuestreo {
+  background-color: orange;
+}
+
+.btn-CrearEspecie:hover {
+  background: rgba(100, 148, 237, 0.761);
+  transition: background 0.5s ease;
+}
+
+.btn-CrearMuestreo:hover {
+  background: rgba(255, 166, 0, 0.68);
+  transition: background 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .camposEspecie1 {
+    grid-template-columns: 1fr;
+  }
+
+  .camposEspecie2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  #fotosEspecies {
+    grid-column: -1/1;
+  }
+
+  .div-Btn-CrearMuestreo-Especie {
+    justify-content: center;
+  }
+}

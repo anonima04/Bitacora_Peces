@@ -1,17 +1,31 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import { useState } from "react";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import "./RecoverPassword.css";
 
 const RecoverPassword = () => {
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState(""); // Para mostrar mensajes de éxito o error
+  const [loading, setLoading] = useState(false); // Para mostrar si la solicitud está en proceso
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Correo para recuperación enviado!");
+    setLoading(true); // Indica que el proceso de envío está en curso
+    const auth = getAuth(); // Obtén la instancia de autenticación de Firebase
+
+    try {
+      // Intenta enviar el correo para restablecer la contraseña
+      await sendPasswordResetEmail(auth, email);
+      setMessage("Correo para recuperación enviado!"); // Mensaje de éxito
+    } catch (error) {
+      setMessage("Error al enviar el correo. Verifica tu correo electrónico.");
+      console.error(error.message); // En caso de error, muestra el mensaje en consola
+    } finally {
+      setLoading(false); // Termina el proceso de carga
+    }
   };
 
   return (
@@ -35,10 +49,12 @@ const RecoverPassword = () => {
             onChange={handleEmailChange}
             required
           />
-          <button type="submit" className="boton-recuperar">
-            Enviar enlace
+          <button type="submit" className="boton-recuperar" disabled={loading}>
+            {loading ? "Enviando..." : "Enviar enlace"}
           </button>
         </form>
+        {message && <p className="mensaje">{message}</p>}{" "}
+        {/* Muestra el mensaje de éxito o error */}
       </div>
     </div>
   );

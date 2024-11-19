@@ -25,6 +25,16 @@ const RegisterUser = () => {
     const nuevaPersona = {
       UID: user.uid,
       CORREO: user.email,
+      FECHA_CREACION_USUARIO: new Intl.DateTimeFormat("es-CO", {
+        weekday: "long", // Día de la semana (ej. lunes, martes)
+        year: "numeric", // Año
+        month: "long", // Mes completo (ej. enero, febrero)
+        day: "numeric", // Día del mes
+        hour: "2-digit", // Hora (dos dígitos)
+        minute: "2-digit", // Minutos (dos dígitos)
+        second: "2-digit", // Segundos (dos dígitos)
+        timeZone: "America/Bogota", //Zona horaria
+      }).format(new Date()),
       PRIMER_NOMBRE: e.target.primerNombre.value,
       SEGUNDO_NOMBRE: e.target.segundoNombre.value,
       PRIMER_APELLIDO: e.target.primerApellido.value,
@@ -32,7 +42,6 @@ const RegisterUser = () => {
       TELEFONO: e.target.telefono.value,
       ROL: e.target.rol.value,
     };
-
     crearPersona(nuevaPersona);
   };
 

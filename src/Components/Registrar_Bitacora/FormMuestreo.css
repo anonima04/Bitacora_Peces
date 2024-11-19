@@ -1,0 +1,130 @@
+/* CSS PADRE DEL FORM */
+.padreFormMuestreo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 5rem;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.padreFormMuestreo h1 {
+  text-align: center;
+  font-family: var(--font6);
+  font-size: 2rem;
+}
+
+.padreSpanTituloBitacora {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+#spanTituloBitacora {
+  font-family: var(--font10);
+  font-size: 2rem;
+  padding: 1rem 0 0 0;
+  text-shadow: 5px 0px 10px cornflowerblue;
+}
+
+/* CSS FORMS */
+
+.padreCamposMuestreo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+.camposMuestreo1 {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 2rem;
+}
+
+.camposMuestreo2 {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  gap: 2rem;
+}
+
+.camposMuestreo3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.divLatLng {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.divLatLng label {
+  font-family: var(--font1);
+  font-size: 1.2rem;
+}
+
+/* CSS CAMPOS MUESTREO */
+
+#fotografias {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font1);
+  box-shadow: 0px 2px 2px lightgreen;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: lightgreen;
+  padding: 3px;
+  font-family: var(--font1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.divBtn-CrearMuestreo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#fecha {
+  border: 0;
+  padding: 0 1rem;
+  font-family: var(--font3);
+  font-size: 1rem;
+  box-shadow: 0px 2px 2px lightgreen;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px) {
+  .padreFormMuestreo {
+    padding: 0 2rem;
+    text-align: center;
+    line-height: 2;
+  }
+  .camposMuestreo2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  #fecha {
+    grid-column: -1 / 1;
+    padding: 1rem;
+  }
+}

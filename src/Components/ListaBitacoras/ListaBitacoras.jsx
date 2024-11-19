@@ -7,51 +7,26 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
-import Chance from "chance";
-
-const chance = new Chance(42);
-
-function createData(id) {
-  return {
-    id,
-    firstName: chance.first(),
-    lastName: chance.last(),
-    age: chance.age(),
-    phone: chance.phone(),
-    state: chance.state({ full: true }),
-  };
-}
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
 
 const columns = [
   {
-    width: 100,
-    label: "First Name",
-    dataKey: "firstName",
-  },
-  {
-    width: 100,
-    label: "Last Name",
-    dataKey: "lastName",
-  },
-  {
     width: 50,
-    label: "Age",
-    dataKey: "age",
-    numeric: true,
+    label: "Titulo Bitacora",
+    dataKey: "TITULO", //Nombre del campo en Firesteor
   },
   {
-    width: 110,
-    label: "State",
-    dataKey: "state",
+    width: 200,
+    label: "Descripcion",
+    dataKey: "DESCRIPCION",
   },
   {
-    width: 130,
-    label: "Phone Number",
-    dataKey: "phone",
+    width: 100,
+    label: "Fecha",
+    dataKey: "FECHA_CREACION",
   },
 ];
-
-const rows = Array.from({ length: 200 }, (_, index) => createData(index));
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
@@ -72,7 +47,6 @@ const VirtuosoTableComponents = {
   )),
 };
 
-// Asignar displayName para mejorar la depuración
 VirtuosoTableComponents.Scroller.displayName = "Scroller";
 VirtuosoTableComponents.Table.displayName = "Table";
 VirtuosoTableComponents.TableHead.displayName = "TableHead";
@@ -88,7 +62,14 @@ function fixedHeaderContent() {
           variant="head"
           align={column.numeric || false ? "right" : "left"}
           style={{ width: column.width }}
-          sx={{ backgroundColor: "lightgreen" }}
+          sx={{
+            backgroundColor: "black",
+            color: "white",
+            fontFamily: "var(--font3)",
+            textAlign: "center",
+            fontSize: "1rem",
+            fontWeight: "bold",
+          }}
         >
           {column.label}
         </TableCell>
@@ -104,20 +85,48 @@ function rowContent(index, row) {
         <TableCell
           key={column.dataKey}
           align={column.numeric || false ? "right" : "left"}
-          sx={{ backgroundColor: index % 2 === 0 ? "white" : "lightgoldenrodyellow" }}
+          sx={{
+            backgroundColor: index % 2 === 0 ? "white" : "cornflowerblue",
+            fontFamily: "var(--font3)",
+            lineHeight: "2.5",
+            textAlign:
+              column.dataKey === "FECHA_CREACION" ? "center" : "justify",
+            fontWeight: "bold",
+          }}
         >
-          {row[column.dataKey]}
+          {row[column.dataKey] || "N/A"}
+          {/* Muestra "N/A" si el campo está vacío */}
         </TableCell>
       ))}
     </React.Fragment>
   );
 }
 
-export default function TableBitacora() {
+export default function ListaBitacoras() {
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "BITACORA"));
+        const documentos = querySnapshot.docs.map((doc) => ({
+          id: doc.id, // ID del documento
+          ...doc.data(), // Datos del documento
+        }));
+        setData(documentos);
+      } catch (error) {
+        alert("Error al traer los documentos: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Paper style={{ height: "100vh", width: "100%" }}>
       <TableVirtuoso
-        data={rows}
+        sx={{ borderRadius: "0px", borderTop: "solid 1px white" }}
+        data={data} // Cambiado a data
         components={VirtuosoTableComponents}
         fixedHeaderContent={fixedHeaderContent}
         itemContent={rowContent}

@@ -1,0 +1,76 @@
+/* CSS CONTENEDOR PADRE FORM BITACORA */
+.padreFormBitacora {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  min-height: auto;
+}
+
+.padreFormBitacora h1 {
+  padding-top: 2rem;
+  font-family: var(--font6);
+  margin: 0;
+  font-size: 2rem;
+}
+
+/*  CSS CONTENEDOR PADRE DE LOS CAMPOS BITACORA */
+
+.camposFormBitacora {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 2rem;
+}
+
+/* CSS CAMPOS BITACORA */
+
+#label-Info {
+  font-family: var(--font1);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.3rem;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+  line-height: 2;
+}
+
+#imgInfo {
+  width: 3rem;
+}
+
+.btn-CrearBitacora {
+  padding: 8px 0;
+  border: 0;
+  border-radius: 5px;
+  font-family: var(--font3);
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.MuiAlert-message {
+  font-family: var(--font1);
+}
+
+/*  MEDIA QUERIES */
+
+@media (max-width: 768px) {
+  .camposFormBitacora {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-CrearBitacora {
+    margin: 0 30%;
+  }
+
+  #label-Info {
+    flex-direction: column;
+    line-height: 2.5;
+  }
+}
