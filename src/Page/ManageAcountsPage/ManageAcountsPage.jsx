@@ -10,7 +10,6 @@ import {
   updateDoc,
   addDoc,
 } from "firebase/firestore";
-import AppBar_Home from '../../Components/AppBar_Home/AppBar_Home'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Button, TextField, Typography, Grid, Container } from "@mui/material";
 import "./ManageAcountsPage.css";
@@ -133,7 +132,6 @@ const ManageAcountsPage = () => {
 
   return (
     <>
-    <AppBar_Home></AppBar_Home>
     <Container maxWidth="lg" className="manage-accounts-container">
       <div className="form-container">
         <Typography variant="h6" gutterBottom className="form-title">

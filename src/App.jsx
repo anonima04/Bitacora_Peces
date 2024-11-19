@@ -13,7 +13,7 @@ import FormBitacora from "./Components/RegistrarBitacora/FormBitacora";
 import { ContextRegistroUser } from "./Context/ContextRegistroUser";
 import "./Fonts.css"; // Familia de fuentes GLOBAL
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
-
+import TableBitacora from './Components/TableBitacora/TableBitacora';
 import File from './Components/File/File';
 import ManageAcountsPage from "./Page/ManageAcountsPage/ManageAcountsPage";
 import SearchBitacoraPage from './Page/SearchBitacoraPage/SearchBitacoraPage';
