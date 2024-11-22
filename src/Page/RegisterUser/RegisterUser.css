@@ -75,7 +75,9 @@
   border-color: #1485ff;
   box-shadow: 0 0 50px #1485ff;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .selectRol:focus {
@@ -94,7 +96,9 @@
 .btnSubmit:hover {
   background-color: lightgreen;
   box-shadow: 0 0 50px 0 lightgreen;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .floating-div {

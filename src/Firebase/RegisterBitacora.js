@@ -39,7 +39,7 @@ export const addDocumento = async (coleccion, objeto) => {
   try {
     // Agregar el documento a la colección
     const docMuestreo = await addDoc(collection(db, coleccion), objeto);
-    alert("Documento registrado");
+    // alert("Documento registrado");
     return docMuestreo.id; // Retorna el ID del DOCUMENTO
   } catch (e) {
     alert("Error al agregar el documento: " + e.message);

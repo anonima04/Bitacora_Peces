@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
-import Footer from "../../Components/Footer/Footer";
 import { getDatosPersonaID } from "../../Firebase/ProfilePage.js";
 
 const ProfilePage = () => {
@@ -19,7 +18,7 @@ const ProfilePage = () => {
     fetchUser();
   }, [userId]);
 
-  //Fetch bitácoras desde el backend
+  // Fetch bitácoras desde el backend
   useEffect(() => {
     const fetchBitacoras = async () => {
       try {
@@ -48,6 +47,7 @@ const ProfilePage = () => {
         if (!response.ok) throw new Error("Error al obtener muestreo");
 
         const muestreoData = await response.json();
+
         setMuestreo(muestreoData);
       } catch (error) {
         console.error("Error haciendo fetching de muestreo:", error);
@@ -94,11 +94,12 @@ const ProfilePage = () => {
           bitacoras.map((bitacora, index) => (
             <div key={index} className="bitacora-item">
               <p>
-                <strong>TITULO: </strong>
+                <strong className="textNegrita">TITULO: </strong>
                 {bitacora.TITULO}
               </p>
               <p>
-                <strong>DESCRIPCION:</strong> {bitacora.DESCRIPCION}
+                <strong className="textNegrita">DESCRIPCION:</strong>{" "}
+                {bitacora.DESCRIPCION}
               </p>
             </div>
           ))
@@ -113,14 +114,16 @@ const ProfilePage = () => {
           muestreo.map((muestra, index) => (
             <div key={index} className="muestra-item">
               <p>
-                <strong>OBSERVACION:</strong> {muestra.OBSERVACION}
+                <strong className="textNegrita">OBSERVACION:</strong>{" "}
+                {muestra.OBSERVACIONES}
               </p>
               <p>
-                <strong>CONDICION CLIMATICA:</strong>{" "}
-                {muestra.CONDICION_CLIMATICA}
+                <strong className="textNegrita">CONDICION CLIMATICA:</strong>{" "}
+                {muestra.CONDICIONES_CLIMATICAS}
               </p>
               <p>
-                <strong>DESCRIPCION:</strong> {muestra.DESCRIPCION_HABITAD}
+                <strong className="textNegrita">DESCRIPCION:</strong>{" "}
+                {muestra.DESCRIPCION_HABITAT}
               </p>
             </div>
           ))
@@ -128,7 +131,6 @@ const ProfilePage = () => {
           <p>No hay muestras creadas</p>
         )}
       </section>
-      <Footer />
     </div>
   );
 };

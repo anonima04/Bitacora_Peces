@@ -132,20 +132,159 @@ const ManageAcountsPage = () => {
 
   return (
     <>
-      <Container maxWidth="lg" className="manage-accounts-container">
-        <div className="form-container">
-          <Typography variant="h6" gutterBottom className="form-title">
-            CREAR NUEVA CUENTA
+    <Container maxWidth="lg" className="manage-accounts-container">
+      <div className="form-container">
+        <Typography variant="h6" gutterBottom className="form-title">
+          CREAR NUEVA CUENTA
+        </Typography>
+        <Grid container spacing={3} className="create-user-form">
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Primer Nombre"
+              fullWidth
+              value={newUser.PRIMER_NOMBRE}
+              onChange={(e) =>
+                setNewUser({ ...newUser, PRIMER_NOMBRE: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Segundo Nombre"
+              fullWidth
+              value={newUser.SEGUNDO_NOMBRE}
+              onChange={(e) =>
+                setNewUser({ ...newUser, SEGUNDO_NOMBRE: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Primer Apellido"
+              fullWidth
+              value={newUser.PRIMER_APELLIDO}
+              onChange={(e) =>
+                setNewUser({ ...newUser, PRIMER_APELLIDO: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Segundo Apellido"
+              fullWidth
+              value={newUser.SEGUNDO_APELLIDO}
+              onChange={(e) =>
+                setNewUser({ ...newUser, SEGUNDO_APELLIDO: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Rol"
+              fullWidth
+              value={newUser.ROL}
+              onChange={(e) => setNewUser({ ...newUser, ROL: e.target.value })}
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Teléfono"
+              fullWidth
+              value={newUser.TELEFONO}
+              onChange={(e) =>
+                setNewUser({ ...newUser, TELEFONO: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Correo Electrónico"
+              fullWidth
+              value={newUser.EMAIL}
+              onChange={(e) =>
+                setNewUser({ ...newUser, EMAIL: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Contraseña"
+              fullWidth
+              type="password"
+              value={newUser.PASSWORD}
+              onChange={(e) =>
+                setNewUser({ ...newUser, PASSWORD: e.target.value })
+              }
+              className="input-field"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              onClick={handleCreateUser}
+              className="create-user-btn"
+            >
+              Crear Usuario
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+
+      <div className="user-list">
+        <Typography variant="h6" gutterBottom className="form-title">
+          USUARIOS EXISTENTES
+        </Typography>
+        <div className="user-list-card">
+          {users.map((user) => (
+            <div key={user.id} className="user-card">
+              <Typography variant="h6" className="user-name">
+                {user.PRIMER_NOMBRE} {user.PRIMER_APELLIDO}
+              </Typography>
+              <Typography className="user-phone">
+                Teléfono: {user.TELEFONO}
+              </Typography>
+              <Typography className="user-role">Rol: {user.ROL}</Typography>
+              <div className="button-container">
+                <Button
+                  variant="contained"
+                  className="edit-btn"
+                  onClick={() => setEditingUser(user)}
+                >
+                  Editar
+                </Button>
+                <Button
+                  variant="contained"
+                  className="delete-btn"
+                  onClick={() => handleDeleteUser(user.id)}
+                >
+                  Eliminar
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {editingUser && (
+        <div className="edit-user-form">
+          <Typography variant="h6" className="form-title">
+            EDITAR USUARIO
           </Typography>
-          <Grid container spacing={3} className="create-user-form">
+          <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
                 label="Primer Nombre"
                 fullWidth
-                value={newUser.PRIMER_NOMBRE}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, PRIMER_NOMBRE: e.target.value })
-                }
+                name="PRIMER_NOMBRE"
+                value={editingUser.PRIMER_NOMBRE}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
@@ -153,10 +292,9 @@ const ManageAcountsPage = () => {
               <TextField
                 label="Segundo Nombre"
                 fullWidth
-                value={newUser.SEGUNDO_NOMBRE}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, SEGUNDO_NOMBRE: e.target.value })
-                }
+                name="SEGUNDO_NOMBRE"
+                value={editingUser.SEGUNDO_NOMBRE}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
@@ -164,10 +302,9 @@ const ManageAcountsPage = () => {
               <TextField
                 label="Primer Apellido"
                 fullWidth
-                value={newUser.PRIMER_APELLIDO}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, PRIMER_APELLIDO: e.target.value })
-                }
+                name="PRIMER_APELLIDO"
+                value={editingUser.PRIMER_APELLIDO}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
@@ -175,10 +312,9 @@ const ManageAcountsPage = () => {
               <TextField
                 label="Segundo Apellido"
                 fullWidth
-                value={newUser.SEGUNDO_APELLIDO}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, SEGUNDO_APELLIDO: e.target.value })
-                }
+                name="SEGUNDO_APELLIDO"
+                value={editingUser.SEGUNDO_APELLIDO}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
@@ -186,10 +322,9 @@ const ManageAcountsPage = () => {
               <TextField
                 label="Rol"
                 fullWidth
-                value={newUser.ROL}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, ROL: e.target.value })
-                }
+                name="ROL"
+                value={editingUser.ROL}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
@@ -197,162 +332,25 @@ const ManageAcountsPage = () => {
               <TextField
                 label="Teléfono"
                 fullWidth
-                value={newUser.TELEFONO}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, TELEFONO: e.target.value })
-                }
-                className="input-field"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Correo Electrónico"
-                fullWidth
-                value={newUser.EMAIL}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, EMAIL: e.target.value })
-                }
-                className="input-field"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Contraseña"
-                fullWidth
-                type="password"
-                value={newUser.PASSWORD}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, PASSWORD: e.target.value })
-                }
+                name="TELEFONO"
+                value={editingUser.TELEFONO}
+                onChange={handleChange}
                 className="input-field"
               />
             </Grid>
             <Grid item xs={12}>
               <Button
                 variant="contained"
-                onClick={handleCreateUser}
-                className="create-user-btn"
+                onClick={handleEditUser}
+                className="save-btn"
               >
-                Crear Usuario
+                Guardar Cambios
               </Button>
             </Grid>
           </Grid>
         </div>
-
-        <div className="user-list">
-          <Typography variant="h6" gutterBottom className="form-title">
-            USUARIOS EXISTENTES
-          </Typography>
-          <div className="user-list-card">
-            {users.map((user) => (
-              <div key={user.id} className="user-card">
-                <Typography variant="h6" className="user-name">
-                  {user.PRIMER_NOMBRE} {user.PRIMER_APELLIDO}
-                </Typography>
-                <Typography className="user-phone">
-                  Teléfono: {user.TELEFONO}
-                </Typography>
-                <Typography className="user-role">Rol: {user.ROL}</Typography>
-                <div className="button-container">
-                  <Button
-                    variant="contained"
-                    className="edit-btn"
-                    onClick={() => setEditingUser(user)}
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className="delete-btn"
-                    onClick={() => handleDeleteUser(user.id)}
-                  >
-                    Eliminar
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {editingUser && (
-          <div className="edit-user-form">
-            <Typography variant="h6" className="form-title">
-              EDITAR USUARIO
-            </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Primer Nombre"
-                  fullWidth
-                  name="PRIMER_NOMBRE"
-                  value={editingUser.PRIMER_NOMBRE}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Segundo Nombre"
-                  fullWidth
-                  name="SEGUNDO_NOMBRE"
-                  value={editingUser.SEGUNDO_NOMBRE}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Primer Apellido"
-                  fullWidth
-                  name="PRIMER_APELLIDO"
-                  value={editingUser.PRIMER_APELLIDO}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Segundo Apellido"
-                  fullWidth
-                  name="SEGUNDO_APELLIDO"
-                  value={editingUser.SEGUNDO_APELLIDO}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Rol"
-                  fullWidth
-                  name="ROL"
-                  value={editingUser.ROL}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Teléfono"
-                  fullWidth
-                  name="TELEFONO"
-                  value={editingUser.TELEFONO}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  onClick={handleEditUser}
-                  className="save-btn"
-                >
-                  Guardar Cambios
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        )}
-      </Container>
+      )}
+    </Container>
     </>
   );
 };

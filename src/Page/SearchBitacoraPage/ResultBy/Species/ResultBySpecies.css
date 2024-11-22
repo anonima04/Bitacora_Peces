@@ -1,0 +1,86 @@
+.results-wrapper {
+  padding: 20px;
+}
+
+.result-item {
+  margin-bottom: 30px;
+}
+
+.result-header {
+  text-align: start; /* Alinea todo el texto a la izquierda */
+}
+
+.result-title {
+  text-align: center; /* Centra el título */
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.result-description,
+.result-date,
+.muestreo-info,
+.no-results {
+  text-align: start; /* Alinea el texto a la izquierda */
+  font-size: 1rem;
+}
+
+.muestreos-container {
+  margin-top: 20px;
+}
+
+.muestreo-card {
+  margin-top: 10px;
+}
+
+.muestreo-info {
+  margin-bottom: 5px;
+}
+
+.muestreos-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center; /* Centra los títulos de la sección */
+}
+
+.especies-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center; /* Centra el título de la sección de especies */
+}
+
+.especie-name {
+  text-align: start;
+}
+
+.no-photos,
+.no-especies,
+.no-muestreos {
+  text-align: start;
+  font-style: italic;
+  color: gray;
+}
+
+.loading-especie {
+  text-align: start;
+  color: blue;
+  font-style: italic;
+}
+
+.especie-photo {
+  width: 100%;
+  max-width: 200px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.especie-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.no-results {
+  text-align: start;
+  font-size: 1.2rem;
+  color: red;
+}

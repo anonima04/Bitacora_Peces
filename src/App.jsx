@@ -8,11 +8,14 @@ import Login from "./Page/LoginPage/Login";
 import Home from "./Page/Home/Home";
 import RecoverPassword from "./Page/RecoverPassword/RecoverPassword";
 import RegisterUser from "./Page/RegisterUser/RegisterUser";
+
 import ProtectedRoute from "./Components/Authentication/ProtectedRoute";
 import FormBitacora from "./Components/Registrar_Bitacora/FormBitacora";
 import "./Fonts.css"; // Familia de fuentes GLOBAL
 import ProfilePage from "./Page/ProfilePage/ProfilePage";
 import File from "./Components/File/File";
+import ManageAcountsPage from "./Page/ManageAcountsPage/ManageAcountsPage";
+import SearchBitacoraPage from "./Page/SearchBitacoraPage/SearchBitacoraPage";
 
 function App() {
   return (
@@ -25,7 +28,6 @@ function App() {
         <Route path="/consejos" element={<TipsPage nav={true} />} />
         <Route path="/sobre-nosotros" element={<AboutUsPage />} />
         <Route path="/especies-destacadas" element={<FeaturedSpeciesPage />} />
-
         {/* Protected Routes */}
         <Route
           path="/registerUser"
@@ -35,9 +37,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route path="/formBitacora" element={<FormBitacora />}></Route>
-
         <Route
           path="/home"
           element={
@@ -61,6 +61,16 @@ function App() {
               <File />
             </ProtectedRoute>
           }
+        />
+        <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path="/gestionarCuentas" element={<ManageAcountsPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/perfil/:userId" element={<ProfilePage />}></Route>
+        <Route path="/file/:idbitacora" element={<File />} />
+        <Route path="/crearBitacora" />
+        <Route
+          path="/buscarBitacora"
+          element={<SearchBitacoraPage></SearchBitacoraPage>}
         />
       </Routes>
     </Router>

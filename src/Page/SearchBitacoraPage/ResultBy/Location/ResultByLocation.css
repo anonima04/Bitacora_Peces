@@ -1,0 +1,93 @@
+/* Contenedor principal */
+.result-location-container {
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tarjetas de bitácora */
+.bitacora-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 5px;
+  padding: 1.5rem;
+}
+
+/* Títulos centrados */
+.bitacora-card h3,
+.bitacora-card h4,
+.bitacora-card h5 {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Textos alineados a la izquierda */
+.bitacora-card p {
+  text-align: left;
+  font-size: 1rem;
+  color: black;
+}
+
+/* Resaltar los títulos de las secciones */
+.bitacora-card p strong {
+  font-weight: 600;
+}
+
+/* Contenedor de las imágenes */
+.imagenes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.foto {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensajes sin resultados */
+.no-results,
+.no-muestreos,
+.no-especies,
+.no-photos {
+  font-size: 1rem;
+  color: #999;
+  text-align: center;
+}
+
+/* Estilos de las especies */
+.especie {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.especie p {
+  margin-bottom: 0.5rem;
+}
+
+.especie strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* CSS para todos los botones del contenedor "div" classname="bitacora-card" */
+.bitacora-card button {
+  padding: 10px;
+  background-color: rgba(100, 148, 237, 0.458);
+  border-radius: 5px;
+  border: 0;
+  font-family: var(--font7);
+  font-weight: bold;
+}

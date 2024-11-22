@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AppBar, Container } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
@@ -18,9 +19,11 @@ import {
 import TipsPage from "../../Page/TipsPage/TipsPage.jsx";
 import { signOut } from "firebase/auth";
 import ListaBitacoras from "../ListaBitacoras/ListaBitacoras.jsx";
-import RegistrarBitacora from "../Registrar_Bitacora/FormBitacora.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ManageAcountsPage from "../../Page/ManageAcountsPage/ManageAcountsPage.jsx";
+import SearchBitacoraPage from "../../Page/SearchBitacoraPage/SearchBitacoraPage.jsx";
+import PruebaEditar from "../../Page/PruebaEditar/Prueba.jsx";
+import FormBitacora from "../Registrar_Bitacora/FormBitacora";
 
 function AppBar_Home() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -29,11 +32,15 @@ function AppBar_Home() {
   const [open, setOpen] = useState(false);
   const [bitacoras, setBitacoras] = useState(false);
   const [crearBitacora, setCrearBitacora] = useState(false);
+  const [buscarBitacora, setBuscarBitacora] = useState(false);
   const [verTips, setTips] = useState(true);
-  const [user] = useAuthState(auth); //Obtener usuario actual en REACT
+  const [user] = useAuthState(auth); // Obtener usuario actual en REACT
   const [gestionarUsuarios, setGestionarUsuarios] = useState(false);
+  const [editar, setEditar] = useState(false);
 
   useEffect(() => {
+    if (!user) return; // No hacer nada si no hay usuario autenticado
+
     const fetchUserRole = async () => {
       try {
         const q = query(
@@ -45,7 +52,6 @@ function AppBar_Home() {
 
         if (!querySnapshot.empty) {
           const userData = querySnapshot.docs[0].data();
-          // Suponiendo que el rol del usuario está en un campo 'rol'
           if (userData.ROL === "Administrador") {
             setIsAdmin(true);
           }
@@ -80,12 +86,16 @@ function AppBar_Home() {
     Tips,
     NuevaBitacora,
     verBitacoras,
-    verGestionarUsuarios
+    verGestionarUsuarios,
+    buscar,
+    edit
   ) => {
     setTips(Tips);
     setCrearBitacora(NuevaBitacora);
     setBitacoras(verBitacoras);
     setGestionarUsuarios(verGestionarUsuarios);
+    setBuscarBitacora(buscar);
+    setEditar(edit);
   };
 
   return (
@@ -97,7 +107,14 @@ function AppBar_Home() {
             <span
               id="span-home"
               onClick={() =>
-                actualizarVistaComponentes(true, false, false, false)
+                actualizarVistaComponentes(
+                  true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                )
               }
             >
               BITAC-DS
@@ -107,7 +124,14 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/crearBitacora");
-                  actualizarVistaComponentes(false, true, false, false);
+                  actualizarVistaComponentes(
+                    false,
+                    true,
+                    false,
+                    false,
+                    false,
+                    false
+                  );
                 }}
               >
                 Nueva Bitacora
@@ -116,7 +140,14 @@ function AppBar_Home() {
                 className="a-page"
                 onClick={() => {
                   // navigate("/verBitacoras");
-                  actualizarVistaComponentes(false, false, true, false);
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    true,
+                    false,
+                    false,
+                    false
+                  );
                 }}
               >
                 Mis Bitacoras
@@ -126,15 +157,54 @@ function AppBar_Home() {
                 <a
                   className="a-page"
                   onClick={() =>
-                    actualizarVistaComponentes(false, false, false, true)
+                    actualizarVistaComponentes(
+                      false,
+                      false,
+                      false,
+                      true,
+                      false,
+                      false
+                    )
                   }
                 >
                   Gestionar Cuentas
                 </a>
               )}
+              {/* Agregar "Buscar bitacora" solo si es admin */}
+
+              <a
+                className="a-page"
+                onClick={() =>
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    false
+                  )
+                }
+              >
+                Buscar Bitacoras
+              </a>
+              <a
+                className="a-page"
+                onClick={() =>
+                  actualizarVistaComponentes(
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true
+                  )
+                }
+              >
+                Editar Bitacoras
+              </a>
             </div>
           </div>
-          {/*  */}
+          {/* Menú de perfil */}
           <div className="perfil-menu" onClick={handleMenu}>
             <IconButton>
               <AccountCircle
@@ -146,7 +216,6 @@ function AppBar_Home() {
                 }}
               />
             </IconButton>
-            {/*  */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -167,13 +236,15 @@ function AppBar_Home() {
               <MenuItem onClick={handleClose}>Cerrar Sesion</MenuItem>
             </Menu>
           </div>
-          {/*  */}
         </Container>
       </AppBar>
+      {/* Mostrar páginas según los estados */}
       {verTips && <TipsPage />}
-      {crearBitacora && <RegistrarBitacora />}
+      {crearBitacora && <FormBitacora />}
       {bitacoras && <ListaBitacoras />}
       {gestionarUsuarios && <ManageAcountsPage />}
+      {buscarBitacora && <SearchBitacoraPage />}
+      {editar && <PruebaEditar />}
     </>
   );
 }
